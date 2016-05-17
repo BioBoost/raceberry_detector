@@ -1,0 +1,6 @@
+﻿<AdaptiveVisionProject Name="raceberry_detector" Version="4.3.0" StartUpProgramName="Main">
+  <Files>
+    <Program Path="raceberry_detector.avcode" />
+    <View Path="raceberry_detector.avview" />
+  </Files>
+</AdaptiveVisionProject>
