@@ -4,7 +4,7 @@ public Main()
 	//:HIDDENPORT[inInputQueueSize] TRUE
 	GigEVision_GrabImage
 	(
-		inAddress: "10.182.34.102"
+		inAddress: "10.182.34.101"
 		inPixelFormat: "BayerRG8"
 		inInputQueueSize: 1
 		outFrame: con_3f9e9967_4ab7_4159_a595_443b1829b7c1
@@ -19,14 +19,14 @@ public Main()
 		inMazeROI:
 			Box
 			(
-				X: 4
-				Y: 58
-				Width: 2444
-				Height: 1216
+				X: 24
+				Y: 18
+				Width: 2412
+				Height: 1516
 			)
+		inLowSaturate: 116.000000
+		inHighSaturate: 230.000000
 		outImage: con_2e5fd2d0_7f1f_4e67_b59d_0040f08c07f0
-		outImage.Width: Nil
-		outImage.Height: Nil
 	)
 
 	FindMaze
@@ -44,7 +44,7 @@ public Main()
 	//:COORDINATESYSTEM[inSelectTopArea] Absolute
 	//:BGIMAGE[inDotCircleArea] con_2e5fd2d0_7f1f_4e67_b59d_0040f08c07f0
 	//:COORDINATESYSTEM[inDotCircleArea] Absolute
-	disabled Configuration
+	Configuration
 	(
 		inSelectCenterArea:
 			Circle2D
@@ -52,10 +52,10 @@ public Main()
 				Center:
 					Point2D
 					(
-						X: 568.656616
-						Y: 573.712830
+						X: 1209.869629
+						Y: 586.717224
 					)
-				Radius: 8.650146
+				Radius: 9.168686
 			)
 		inImageWidth: con_4a48c183_07df_432b_9a97_f84dffbffe4b
 		inImageHeight: con_bd0404b1_5c3d_4b4d_8441_1405d80063fa
@@ -65,10 +65,10 @@ public Main()
 				Center:
 					Point2D
 					(
-						X: 568.682129
-						Y: 573.711426
+						X: 1210.168945
+						Y: 585.145874
 					)
-				Radius: 42.235535
+				Radius: 41.501400
 			)
 		inDotCircleArea:
 			Circle2D
@@ -76,10 +76,10 @@ public Main()
 				Center:
 					Point2D
 					(
-						X: 842.715088
-						Y: 710.711243
+						X: 1323.147461
+						Y: 833.113159
 					)
-				Radius: 3.966018
+				Radius: 3.993531
 			)
 		outMinimalCenterArea: con_acde6656_8f18_4ab9_a342_553d10d9e3b5
 		outMaximalCenterArea: con_e9d5cee5_7130_4655_a517_73ce1e3e2486
@@ -88,7 +88,7 @@ public Main()
 		outMaximalDotArea: con_a73af5d2_46ff_403b_90a9_83883065f21b
 	)
 
-	disabled FindPololus
+	FindPololus
 	(
 		inImage: con_179746bf_6035_4bbe_ace0_a4257a0800c1
 		inMinCenterArea: con_acde6656_8f18_4ab9_a342_553d10d9e3b5
@@ -97,508 +97,36 @@ public Main()
 		inMinDotArea: con_870641ce_0db9_4676_a63d_ef9bc28697bf
 		inMaxDotArea: con_a73af5d2_46ff_403b_90a9_83883065f21b
 		outImage: Nil
+		outJsonString: Nil
+	)
+}
+
+public FindMaze(Image inImage, Image? outRotatedCroppedImage) step
+	expand inImage.Width
+	expand inImage.Height
+{
+	FindMazeRectangle
+	(
+		inImage: inImage
+		outBoundingRectangle: con_75455fd7_96c4_4d34_9f8e_ba371cbed624
 	)
 
-	//:BGIMAGE[inSearchRegion] @input:inImage
-	//:PLUGINCONFIG[inEdgeModel] raceberry_detector.2b40fab9.EdgeModel.avconfig
-	//:HIDDENPORT[inEdgeModel] TRUE
-	//:HIDDENPORT[inMinPyramidLevel] TRUE
-	//:HIDDENPORT[inMaxPyramidLevel] TRUE
-	//:HIDDENPORT[inEdgeThreshold] TRUE
-	//:HIDDENPORT[inIgnoreEdgePolarity] TRUE
-	//:HIDDENPORT[inMinScore] TRUE
-	//:HIDDENPORT[outObject] TRUE
-	disabled LocateSingleObject_Edges
+	//:HIDDENPORT[inInterpolationMethod] TRUE
+	CropImageToRectangle
 	(
-		inImage: con_2e5fd2d0_7f1f_4e67_b59d_0040f08c07f0
-		inSearchRegion: Region<raceberry_detector.a7a5430e.Region.avdata>
-		inEdgeModel: EdgeModel<raceberry_detector.73e692ca.EdgeModel.avdata>
-		inMinPyramidLevel: 2
-		inMaxPyramidLevel: 4
-		inEdgeThreshold: 60.000000
-		inIgnoreEdgePolarity: False
-		inMinScore: 0.700000
-		outObject: Nil
-		outPyramidHeight: Nil
-		diagObjectEdges: Nil
-		diagEdgePyramid: Nil
-		diagMatchPyramid: Nil
-		diagScores: Nil
-		outObject.Match: Nil
-		outObject.Alignment: Nil
-		outObject.Score: Nil
-	)
-
-	//:BGIMAGE[inSearchRegion] @input:inImage
-	//:PLUGINCONFIG[inEdgeModel] raceberry_detector.795018c9.EdgeModel.avconfig
-	//:HIDDENPORT[inEdgeModel] TRUE
-	//:HIDDENPORT[inMinPyramidLevel] TRUE
-	//:HIDDENPORT[inMaxPyramidLevel] TRUE
-	//:HIDDENPORT[inEdgeThreshold] TRUE
-	//:HIDDENPORT[inIgnoreEdgePolarity] TRUE
-	//:HIDDENPORT[inMinScore] TRUE
-	//:HIDDENPORT[outObject] TRUE
-	disabled LocateSingleObject_Edges
-	(
-		inImage: con_2e5fd2d0_7f1f_4e67_b59d_0040f08c07f0
-		inSearchRegion: Region<raceberry_detector.a2c40a70.Region.avdata>
-		inEdgeModel: EdgeModel<raceberry_detector.4f6edc06.EdgeModel.avdata>
-		inMinPyramidLevel: 2
-		inMaxPyramidLevel: 4
-		inEdgeThreshold: 60.000000
-		inIgnoreEdgePolarity: False
-		inMinScore: 0.700000
-		outObject: Nil
-		outPyramidHeight: Nil
-		diagObjectEdges: Nil
-		diagEdgePyramid: Nil
-		diagMatchPyramid: Nil
-		diagScores: Nil
-		outObject.Match: Nil
-		outObject.Alignment: Nil
-		outObject.Score: Nil
-	)
-
-	//:HIDDENPORT[inStdDevX] TRUE
-	//:HIDDENPORT[inStdDevY] TRUE
-	//:HIDDENPORT[inKernelRelativeSize] TRUE
-	disabled SmoothImage_Gauss
-	(
-		inImage: con_2e5fd2d0_7f1f_4e67_b59d_0040f08c07f0
-		inRoi: Nil
-		inStdDevX: 1.000000
-		inStdDevY: Nil
-		inKernelRelativeSize: 2.000000
-		outImage: con_211cc512_f77f_483c_b2c9_c152ba2f9dab
-		diagKernelRadiusX: Nil
-		diagKernelRadiusY: Nil
-	)
-
-	//:BGIMAGE[inRoi] @input:inImage
-	//:HIDDENPORT[inFuzziness] TRUE
-	disabled ThresholdImage
-	(
-		inImage: con_211cc512_f77f_483c_b2c9_c152ba2f9dab
-		inRoi: Region<raceberry_detector.85ba4c2a.Region.avdata>
-		inMinValue: 128.000000
-		inMaxValue: Nil
-		inFuzziness: 0.000000
-		outMonoImage: con_9d02ebb9_85ea_48e6_865b_84522e05665e
-	)
-
-	//:BGIMAGE[inSearchRegion] @input:inImage
-	//:PLUGINCONFIG[inEdgeModel] raceberry_detector.fc9a1ba5.EdgeModel.avconfig
-	//:HIDDENPORT[inEdgeModel] TRUE
-	//:HIDDENPORT[inMinPyramidLevel] TRUE
-	//:HIDDENPORT[inMaxPyramidLevel] TRUE
-	//:HIDDENPORT[inEdgeThreshold] TRUE
-	//:HIDDENPORT[inIgnoreEdgePolarity] TRUE
-	//:HIDDENPORT[inMinScore] TRUE
-	//:HIDDENPORT[outObject] TRUE
-	disabled LocateSingleObject_Edges
-	(
-		inImage: con_2e5fd2d0_7f1f_4e67_b59d_0040f08c07f0
-		inSearchRegion: Region<raceberry_detector.cbddfb24.Region.avdata>
-		inEdgeModel: EdgeModel<raceberry_detector.ac7a961f.EdgeModel.avdata>
-		inMinPyramidLevel: 0
-		inMaxPyramidLevel: 3
-		inEdgeThreshold: 10.000000
-		inIgnoreEdgePolarity: False
-		inMinScore: 0.600000
-		outObject: Nil
-		outPyramidHeight: Nil
-		diagObjectEdges: Nil
-		diagEdgePyramid: Nil
-		diagMatchPyramid: Nil
-		diagScores: Nil
-		outObject.Match: Nil
-		outObject.Alignment: Nil
-		outObject.Score: Nil
-	)
-
-	disabled CreateRectangleRegion
-	(
-		inRectangle: Rectangle2D()
-		inRegionWidth: 0
-		inRegionHeight: 0
-		inRectangleAlignment.Origin: Nil
-		inRectangleAlignment.Angle: Nil
-		inRectangleAlignment.Scale: 1.000000
-		outRegion: Nil
+		inImage: inImage
+		inRectangle: con_75455fd7_96c4_4d34_9f8e_ba371cbed624
+		inRectangleAlignment: Nil
+		inInterpolationMethod: Bilinear
+		inMargin: 0.000000
+		outImage: con_18d6a6e9_f2c3_4da3_8d8c_158a467ba01b
 		outAlignedRectangle: Nil
 	)
 
-	//:PLUGINCONFIG[inGrayModel] raceberry_detector.2493f377.GrayModel.avconfig
-	//:HIDDENPORT[inGrayModel] TRUE
-	//:HIDDENPORT[inMinPyramidLevel] TRUE
-	//:HIDDENPORT[inMaxPyramidLevel] TRUE
-	//:HIDDENPORT[inMinScore] TRUE
-	//:HIDDENPORT[outObject] TRUE
-	disabled LocateSingleObject_NCC
-	(
-		inImage: con_9d02ebb9_85ea_48e6_865b_84522e05665e
-		inSearchRegion: Nil
-		inGrayModel: GrayModel<raceberry_detector.9c2003d3.GrayModel.avdata>
-		inMinPyramidLevel: 0
-		inMaxPyramidLevel: 3
-		inMinScore: 0.700000
-		outObject: Nil
-		outPyramidHeight: Nil
-		diagImagePyramid: Nil
-		diagMatchPyramid: Nil
-		diagScores: Nil
-		outObject.Match: Nil
-		outObject.Alignment: Nil
-		outObject.Score: Nil
-	)
+	outRotatedCroppedImage = con_18d6a6e9_f2c3_4da3_8d8c_158a467ba01b
 }
 
-public FindMaze(Image inImage, Image outRotatedCroppedImage) step
-{
-	//:PLUGINCONFIG[inEdgeModel] raceberry_detector.66b2c038.EdgeModel.avconfig
-	//:HIDDENPORT[inEdgeModel] TRUE
-	//:HIDDENPORT[inMinPyramidLevel] TRUE
-	//:HIDDENPORT[inMaxPyramidLevel] TRUE
-	//:HIDDENPORT[inEdgeThreshold] TRUE
-	//:HIDDENPORT[inIgnoreEdgePolarity] TRUE
-	//:HIDDENPORT[inMinScore] TRUE
-	//:HIDDENPORT[outObject] TRUE
-	LocateSingleObject_Edges
-	(
-		inImage: inImage
-		inSearchRegion: Nil
-		inEdgeModel: EdgeModel<raceberry_detector.ceb02312.EdgeModel.avdata>
-		inMinPyramidLevel: 0
-		inMaxPyramidLevel: 3
-		inEdgeThreshold: 10.000000
-		inIgnoreEdgePolarity: False
-		inMinScore: 0.700000
-		outObject: Nil
-		outPyramidHeight: Nil
-		diagObjectEdges: Nil
-		diagEdgePyramid: Nil
-		diagMatchPyramid: Nil
-		diagScores: Nil
-		outObject.Match: con_2ef1d48e_d01e_428e_abc5_f98b55938177
-		outObject.Alignment: Nil
-		outObject.Score: Nil
-	)
-
-	//:BGIMAGE[inFittingField] @macroInput:inImage
-	//:COORDINATESYSTEM[inFittingField] Absolute
-	//:HIDDENPORT[inScanCount] TRUE
-	//:HIDDENPORT[inScanWidth] TRUE
-	//:HIDDENPORT[inImageInterpolation] TRUE
-	//:HIDDENPORT[inStripeScanParams] TRUE
-	//:HIDDENPORT[inStripeSelection] TRUE
-	//:HIDDENPORT[inMaxIncompleteness] TRUE
-	//:HIDDENPORT[inOutlierSuppression] TRUE
-	//:HIDDENPORT[outDeviationProfile] TRUE
-	//:HIDDENPORT[diagSamplingAreas] TRUE
-	disabled FitSegmentToStripe
-	(
-		inImage: inImage
-		inFittingField:
-			SegmentFittingField
-			(
-				Axis:
-					Segment2D
-					(
-						Point1:
-							Point2D
-							(
-								X: 705.333313
-								Y: 106.484863
-							)
-						Point2:
-							Point2D
-							(
-								X: 1820.484741
-								Y: 100.424255
-							)
-					)
-				Width: 520.809143
-			)
-		inFittingFieldAlignment: Nil
-		inScanCount: 20
-		inScanWidth: 5
-		inImageInterpolation: Bilinear
-		inStripeScanParams:
-			StripeScanParams
-			(
-				ProfileInterpolation: Quadratic4
-				SmoothingStdDev: 0.900000
-				MinMagnitude: 50.000000
-				MaxInnerEdgeMagnitude: Nil
-				StripePolarity: Bright
-				MinStripeWidth: 0.000000
-				MaxStripeWidth: Nil
-			)
-		inStripeSelection: First
-		inMaxIncompleteness: 0.100000
-		inOutlierSuppression: Nil
-		outSegment: Nil
-		outLeftSegment: Nil
-		outRightSegment: Nil
-		outStripePoints: Nil
-		outLeftStripePoints: Nil
-		outRightStripePoints: Nil
-		outDeviationProfile: Nil
-		diagScanSegments: Nil
-		diagSamplingAreas: Nil
-	)
-
-	//:BGIMAGE[inFittingField] @macroInput:inImage
-	//:COORDINATESYSTEM[inFittingField] Absolute
-	//:HIDDENPORT[inScanCount] TRUE
-	//:HIDDENPORT[inScanWidth] TRUE
-	//:HIDDENPORT[inImageInterpolation] TRUE
-	//:HIDDENPORT[inStripeScanParams] TRUE
-	//:HIDDENPORT[inStripeSelection] TRUE
-	//:HIDDENPORT[inMaxIncompleteness] TRUE
-	//:HIDDENPORT[inOutlierSuppression] TRUE
-	//:HIDDENPORT[outDeviationProfile] TRUE
-	//:HIDDENPORT[diagSamplingAreas] TRUE
-	disabled FitSegmentToStripe
-	(
-		inImage: inImage
-		inFittingField:
-			SegmentFittingField
-			(
-				Axis:
-					Segment2D
-					(
-						Point1:
-							Point2D
-							(
-								X: 227.172394
-								Y: 275.241333
-							)
-						Point2:
-							Point2D
-							(
-								X: 240.965515
-								Y: 1061.448242
-							)
-					)
-				Width: 435.380737
-			)
-		inFittingFieldAlignment: Nil
-		inScanCount: 40
-		inScanWidth: 5
-		inImageInterpolation: Bilinear
-		inStripeScanParams:
-			StripeScanParams
-			(
-				ProfileInterpolation: Quadratic4
-				SmoothingStdDev: 0.600000
-				MinMagnitude: 5.000000
-				MaxInnerEdgeMagnitude: Nil
-				StripePolarity: Bright
-				MinStripeWidth: 0.000000
-				MaxStripeWidth: Nil
-			)
-		inStripeSelection: First
-		inMaxIncompleteness: 0.100000
-		inOutlierSuppression: Nil
-		outSegment: con_756fd8c4_347d_407b_ab9b_19a81297902d
-		outLeftSegment: Nil
-		outRightSegment: Nil
-		outStripePoints: Nil
-		outLeftStripePoints: Nil
-		outRightStripePoints: Nil
-		outDeviationProfile: Nil
-		diagScanSegments: Nil
-		diagSamplingAreas: Nil
-	)
-
-	disabled CreateSegment
-	(
-		inPoint: Point2D()
-		inPointAnchor: 0.000000
-		inDirection: 90.000000
-		inLength: 500.000000
-		outSegment: con_e38b68de_82b0_4f44_b277_3cc344a06b93
-	)
-
-	//:HIDDENPORT[inAngleMetric] TRUE
-	//:HIDDENPORT[inAutodetectOrientation] TRUE
-	disabled AngleBetweenSegments
-	(
-		inSegment1: con_756fd8c4_347d_407b_ab9b_19a81297902d
-		inSegment2: con_e38b68de_82b0_4f44_b277_3cc344a06b93
-		inAngleMetric: PolygonClockwise
-		inAutodetectOrientation: True
-		outAbsoluteAngle: Nil
-		outDirectedAngle: con_f0ba0688_ec65_40df_8ad7_d0cef426fb4a
-		outArc: Nil
-	)
-
-	//:HIDDENPORT[inSizeMode] TRUE
-	//:HIDDENPORT[inInterpolationMethod] TRUE
-	//:HIDDENPORT[inInverse] TRUE
-	disabled RotateImage
-	(
-		inImage: inImage
-		inAngle: con_f0ba0688_ec65_40df_8ad7_d0cef426fb4a
-		inSizeMode: Fit
-		inInterpolationMethod: Bilinear
-		inInverse: False
-		outImage: Nil
-	)
-
-	disabled ThresholdToRegion
-	(
-		inImage: inImage
-		inRoi: Nil
-		inMinValue: Nil
-		inMaxValue: 100.000000
-		outRegion: con_7244565c_0167_4451_ac94_9ae5ba62456e
-	)
-
-	//:HIDDENPORT[inConnectivity] TRUE
-	//:HIDDENPORT[inMinBlobArea] TRUE
-	//:HIDDENPORT[inMaxBlobArea] TRUE
-	//:HIDDENPORT[inRemoveBoundaryBlobs] TRUE
-	disabled SplitRegionIntoBlobs
-	(
-		inRegion: con_7244565c_0167_4451_ac94_9ae5ba62456e
-		inConnectivity: FourDirections
-		inMinBlobArea: 50000
-		inMaxBlobArea: Nil
-		inRemoveBoundaryBlobs: False
-		outBlobs: con_e164e22c_e4b0_465f_8bf8_740b33120f8a
-	)
-
-	disabled cvBackgroundSubtractorMOG2
-	(
-		inImage: inImage
-		inHistory: 5000
-		inVarThreshold: 8.000000
-		inShadowDetection: False
-		outFgmask: con_82f20a33_a640_477a_ac0f_1531e6a89275
-	)
-
-	disabled CropBordersFromRegion
-	(
-		inRegion: con_e164e22c_e4b0_465f_8bf8_740b33120f8a
-		inMarginX: 1
-		inMarginY: 0
-		outRegion: Nil
-	)
-
-	//:HIDDENPORT[inFeature] TRUE
-	disabled ChooseMaximumRegion
-	(
-		inRegions: con_e164e22c_e4b0_465f_8bf8_740b33120f8a
-		inFeature: Area
-		outRegion: con_cbb16181_0fe0_4bbb_bc51_be292c54c196
-		outValue: Nil
-	)
-
-	disabled RegionBoundingBox
-	(
-		inRegion: con_cbb16181_0fe0_4bbb_bc51_be292c54c196
-		outBoundingBox: Nil
-		outBoundingBox.X: Nil
-		outBoundingBox.Y: Nil
-		outBoundingBox.Width: Nil
-		outBoundingBox.Height: Nil
-	)
-
-	disabled RegionEllipticAxes
-	(
-		inRegion: con_cbb16181_0fe0_4bbb_bc51_be292c54c196
-		outMajorAxis: con_4c406d22_923d_4f16_8805_b2d3cd9cc300
-		outMinorAxis: Nil
-	)
-
-	disabled CreateSegment
-	(
-		inPoint: Point2D()
-		inPointAnchor: 0.000000
-		inDirection: 0.000000
-		inLength: 500.000000
-		outSegment: con_7e9da988_fdef_4062_aabd_6f74943a0b59
-	)
-
-	//:HIDDENPORT[inAngleMetric] TRUE
-	//:HIDDENPORT[inAutodetectOrientation] TRUE
-	disabled AngleBetweenSegments
-	(
-		inSegment1: con_4c406d22_923d_4f16_8805_b2d3cd9cc300
-		inSegment2: con_7e9da988_fdef_4062_aabd_6f74943a0b59
-		inAngleMetric: PolygonClockwise
-		inAutodetectOrientation: True
-		outAbsoluteAngle: con_ffde5d4f_c038_4b67_b707_62e4560e7acd
-		outDirectedAngle: Nil
-		outArc: Nil
-	)
-
-	//:HIDDENPORT[inSizeMode] TRUE
-	//:HIDDENPORT[inInterpolationMethod] TRUE
-	//:HIDDENPORT[inInverse] TRUE
-	disabled RotateImage
-	(
-		inImage: inImage
-		inAngle: con_ffde5d4f_c038_4b67_b707_62e4560e7acd
-		inSizeMode: Fit
-		inInterpolationMethod: Bilinear
-		inInverse: False
-		outImage: con_c9dddd53_20b8_4aa6_bbb3_4c72af3c3d22
-	)
-
-	disabled ThresholdToRegion
-	(
-		inImage: con_c9dddd53_20b8_4aa6_bbb3_4c72af3c3d22
-		inRoi: Nil
-		inMinValue: Nil
-		inMaxValue: 100.000000
-		outRegion: con_6e1c292b_5951_4ced_8386_1eb93c15d7f7
-	)
-
-	//:HIDDENPORT[inConnectivity] TRUE
-	//:HIDDENPORT[inMinBlobArea] TRUE
-	//:HIDDENPORT[inMaxBlobArea] TRUE
-	//:HIDDENPORT[inRemoveBoundaryBlobs] TRUE
-	disabled SplitRegionIntoBlobs
-	(
-		inRegion: con_6e1c292b_5951_4ced_8386_1eb93c15d7f7
-		inConnectivity: EightDirections
-		inMinBlobArea: 1000
-		inMaxBlobArea: Nil
-		inRemoveBoundaryBlobs: True
-		outBlobs: con_8ab0079d_7312_4491_b014_ada33c040a17
-	)
-
-	//:HIDDENPORT[inFeature] TRUE
-	disabled ChooseMaximumRegion
-	(
-		inRegions: con_8ab0079d_7312_4491_b014_ada33c040a17
-		inFeature: Area
-		outRegion: con_9144e545_2104_4fb3_82ee_03ceedbd5f5a
-		outValue: Nil
-	)
-
-	disabled RegionBoundingBox
-	(
-		inRegion: con_9144e545_2104_4fb3_82ee_03ceedbd5f5a
-		outBoundingBox: con_6fb93108_6119_4722_a799_18eb1d35d90f
-		outBoundingBox.Width: Nil
-		outBoundingBox.Height: Nil
-	)
-
-	disabled CropImage
-	(
-		inImage: con_c9dddd53_20b8_4aa6_bbb3_4c72af3c3d22
-		inSelection: con_6fb93108_6119_4722_a799_18eb1d35d90f
-		outImage: Nil
-	)
-
-	outRotatedCroppedImage = Image()
-}
-
-public FindPololus(Image inImage, Integer<0, INF> inMinCenterArea, Integer<0, INF>* inMaxCenterArea, Real<0, INF> inROIRadius, Integer<0, INF> inMinDotArea, Integer<0, INF>* inMaxDotArea, Image outImage) step
+public FindPololus(Image inImage, Integer<0, INF> inMinCenterArea, Integer<0, INF>* inMaxCenterArea, Real<0, INF> inROIRadius, Integer<0, INF> inMinDotArea, Integer<0, INF>* inMaxDotArea, Image outImage, String outJsonString) step
 {
 	FindCentersOfPololus
 	(
@@ -619,9 +147,10 @@ public FindPololus(Image inImage, Integer<0, INF> inMinCenterArea, Integer<0, IN
 		inMaxDotArea: inMaxDotArea
 		outCenter: con_f09e5726_dde0_429e_bb1e_3407c961562a
 		outDirectionVector: con_dfcb70b8_3be4_43f9_a1c3_4dc64a582e5d
-		outDirectionAngle: con_8019b420_a659_4952_bb29_d56254acca8a
+		outDirectionAngleRadians: con_8019b420_a659_4952_bb29_d56254acca8a
 		outROICircle: Nil
 		outDotCount: con_a8a17058_c4c0_42ec_9586_ba8e2fa1dc58
+		outDirectionAngleDegrees: Nil
 		outCenter.X: con_8c1c14e5_ca3d_4d3f_abbc_96837da0f4f6
 		outCenter.Y: con_4c6eda57_43fb_4262_842f_8e8e1b1804a7
 	)
@@ -757,10 +286,12 @@ public FindPololus(Image inImage, Integer<0, INF> inMinCenterArea, Integer<0, IN
 	CreateJsonArrayOfPololus
 	(
 		inJsonStrings: con_4db15a9f_7aed_40b9_a8cc_96a30b6ce37c
-		outJsonString: Nil
+		outJsonString: con_a354dc49_c685_40b7_b9c9_8dd3b9b03110
 	)
 
 	outImage = con_c9e41a62_23e1_4923_8be1_e3fc0f0025f2
+
+	outJsonString = con_a354dc49_c685_40b7_b9c9_8dd3b9b03110
 }
 
 public FindCentersOfPololus(Integer<0, INF> inMinCenterArea = 200, Integer<0, INF>* inMaxCenterArea = 300, Image inImage, Real* inMaxCenterThreshold = 90.000000, Point2DArray outCenters) step
@@ -780,8 +311,8 @@ public FindCentersOfPololus(Integer<0, INF> inMinCenterArea = 200, Integer<0, IN
 	(
 		inRegion: con_f8184954_07ec_48a7_afc4_192f2f8958ef
 		inConnectivity: FourDirections
-		inMinBlobArea: inMinCenterArea
-		inMaxBlobArea: inMaxCenterArea
+		inMinBlobArea: 1
+		inMaxBlobArea: Nil
 		inRemoveBoundaryBlobs: True
 		outBlobs: con_9e920cb4_e34b_4d6a_b1ce_53189c96e6f8
 	)
@@ -805,6 +336,23 @@ public FindCentersOfPololus(Integer<0, INF> inMinCenterArea = 200, Integer<0, IN
 	ClassifyRegions
 	(
 		inRegions: con_9e920cb4_e34b_4d6a_b1ce_53189c96e6f8
+		inFeature: Area
+		inMinimum: inMinCenterArea
+		inMaximum: inMaxCenterArea
+		outAccepted: con_4fe2fcdf_b500_4686_b937_498fe0724159
+		outRejected: Nil
+		outBelow: Nil
+		outAbove: Nil
+		outValues: Nil
+	)
+
+	//Select blobs satisfying specs of center blobs
+	//:HIDDENPORT[inFeature] TRUE
+	//:HIDDENPORT[outBelow] TRUE
+	//:HIDDENPORT[outAbove] TRUE
+	ClassifyRegions
+	(
+		inRegions: con_4fe2fcdf_b500_4686_b937_498fe0724159
 		inFeature: Elongation
 		inMinimum: Nil
 		inMaximum: 1.200000
@@ -836,7 +384,8 @@ public FindCentersOfPololus(Integer<0, INF> inMinCenterArea = 200, Integer<0, IN
 	outCenters = con_10daca58_61fd_4f10_a309_2f4ad9782bf0
 }
 
-public DetermineDirection(Point2D inPoint, Image inImage, Real<0, INF> inROIRadius = 60.000000, Real* inDirectionMaxTheshold = 80.000000, Integer<0, INF> inMinDotArea, Integer<0, INF>* inMaxDotArea, Point2D outCenter, Vector2D? outDirectionVector, Real? outDirectionAngle, Circle2D outROICircle, Integer outDotCount) step
+//:OUTPUTHELP[outDirectionAngleRadians] In radians
+public DetermineDirection(Point2D inPoint, Image inImage, Real<0, INF> inROIRadius = 60.000000, Real* inDirectionMaxTheshold = 80.000000, Integer<0, INF> inMinDotArea, Integer<0, INF>* inMaxDotArea, Point2D outCenter, Vector2D? outDirectionVector, Real? outDirectionAngleRadians, Circle2D outROICircle, Integer outDotCount, Real? outDirectionAngleDegrees) step
 	expand inImage.Width
 	expand inImage.Height
 {
@@ -942,7 +491,13 @@ public DetermineDirection(Point2D inPoint, Image inImage, Real<0, INF> inROIRadi
 	VectorDirection
 	(
 		inVector: con_684a5c8b_c340_4a85_b43a_6dfe22171d0d
-		outDirection: con_12140fbf_d2e1_4ce3_a680_1b55348fc12c
+		outDirection: con_257c7747_c6e8_4cdb_b6af_618bf074a85f
+	)
+
+	DegreesToRadians
+	(
+		inDegrees: con_257c7747_c6e8_4cdb_b6af_618bf074a85f
+		outRadians: con_bdfd2fa9_bd5a_4b7d_b24f_c8b00105e168
 	)
 
 	//:HIDDENPORT[inFeature] TRUE
@@ -966,11 +521,13 @@ public DetermineDirection(Point2D inPoint, Image inImage, Real<0, INF> inROIRadi
 
 	outDirectionVector = con_684a5c8b_c340_4a85_b43a_6dfe22171d0d
 
-	outDirectionAngle = con_12140fbf_d2e1_4ce3_a680_1b55348fc12c
+	outDirectionAngleRadians = con_bdfd2fa9_bd5a_4b7d_b24f_c8b00105e168
 
 	outROICircle = con_e62ad94c_fc3e_4638_9573_8b185477fdb5
 
 	outDotCount = con_55996ca6_047e_4b04_a361_aaf8f9b223a7
+
+	outDirectionAngleDegrees = con_257c7747_c6e8_4cdb_b6af_618bf074a85f
 }
 
 public CreatePositionAndDirectionJson(Integer inId, Real inXPosition, Real inYPosition, Real inAngle, String outJsonString) step
@@ -995,7 +552,7 @@ public CreatePositionAndDirectionJson(Integer inId, Real inXPosition, Real inYPo
 	//:HIDDENPORT[inFormat] TRUE
 	FormatString
 	(
-		inFormat: "{ \"id\": \"robot_%0%\", \"x\": %1%, \"y\": %2%, \"a\": %3% },"
+		inFormat: "\"robot%0%\": {\"x\": %1%, \"y\": %2%, \"angle\": %3% },"
 		inData: con_a0c5196c_f821_4ded_8266_3f022380cb6e
 		outFormattedString: con_9a792813_edbe_4947_af39_902987ba1e48
 	)
@@ -1050,9 +607,9 @@ public CreateJsonArrayOfPololus(String?Array inJsonStrings, String outJsonString
 	//:HIDDENPORT[inString8] TRUE
 	ConcatenateStrings
 	(
-		inString1: "["
+		inString1: "{"
 		inString2: con_1e5554f4_d77b_4b4e_b716_f8386fd1abba
-		inString3: "]"
+		inString3: "}"
 		inString4: ""
 		inString5: ""
 		inString6: ""
@@ -1064,14 +621,14 @@ public CreateJsonArrayOfPololus(String?Array inJsonStrings, String outJsonString
 	MergeWithDefault<String>
 	(
 		inConditionalObject: con_6f64de0d_5392_4be8_9938_f83bed135ece
-		inDefaultObject: "[]"
+		inDefaultObject: "{}"
 		outObject: con_b4383cb0_8101_404b_89a2_858e6bd1bd7b
 	)
 
 	outJsonString = con_b4383cb0_8101_404b_89a2_858e6bd1bd7b
 }
 
-public PreprocessImage(Image inImage, Box inMazeROI, Image outImage) step
+public PreprocessImage(Image inImage, Box inMazeROI, Real inLowSaturate = 116.000000, Real inHighSaturate = 230.000000, Image outImage) step
 {
 	AverageChannels
 	(
@@ -1087,21 +644,28 @@ public PreprocessImage(Image inImage, Box inMazeROI, Image outImage) step
 		outImage: con_087c85c9_eb3d_471e_a9fb_d33b6fedbe81
 	)
 
-	//:HIDDENPORT[inLowValue] TRUE
-	//:HIDDENPORT[inHighValue] TRUE
-	ResaturateImage
+	UndistortImage_DivisionModel
 	(
 		inImage: con_087c85c9_eb3d_471e_a9fb_d33b6fedbe81
+		inKappa: 6.000000
+		inCenter: Nil
+		inImageInterpolation: NearestNeighbour
+		outImage: con_df57dc1a_b07c_4c36_8380_9501b0ad5f4c
+	)
+
+	ResaturateImage
+	(
+		inImage: con_df57dc1a_b07c_4c36_8380_9501b0ad5f4c
 		inRoi: Nil
-		inLowValue: 200.000000
-		inHighValue: 200.000000
+		inLowValue: inLowSaturate
+		inHighValue: inHighSaturate
 		outImage: con_de7c58b6_03dd_4912_b0d3_363db2f77983
 	)
 
 	outImage = con_de7c58b6_03dd_4912_b0d3_363db2f77983
 }
 
-//:INPUTHELP[inSelectCenterArea] Please select center circel of a pololu
+//:INPUTHELP[inSelectCenterArea] Please select center circel of a pololu (real dark pixels)
 public Configuration(Circle2D inSelectCenterArea, Integer<0, INF> inImageWidth, Integer<0, INF> inImageHeight, Circle2D inSelectTopArea, Circle2D inDotCircleArea, Integer outMinimalCenterArea, Integer outMaximalCenterArea, Real outTopAreaRadius, Integer outMinimalDotArea, Integer outMaximalDotArea) step
 	expand inSelectTopArea.Radius
 {
@@ -1120,7 +684,7 @@ public Configuration(Circle2D inSelectCenterArea, Integer<0, INF> inImageWidth, 
 	}
 	(
 		inArea: con_d22b514c_dc88_4902_801b_e63101cf044b
-		inPercentage: 10
+		inPercentage: 25
 		outMinimalCenterArea: con_3cdf928b_d5e2_49e1_96ca_afce44bc757a
 		outMaximalCenterArea: con_9d404a1a_e13f_4c7f_b7bc_6556828ebe61
 	)
@@ -1174,5 +738,154 @@ public Configuration(Circle2D inSelectCenterArea, Integer<0, INF> inImageWidth, 
 	outMinimalDotArea = con_7c2f0d5c_e4e2_4c86_9a59_61cf3154d104
 
 	outMaximalDotArea = con_fa3a3063_ef92_4ecb_b3e1_f9d785cfedad
+}
+
+public FindOuterMazeRegion(Image inImage, Region outOriginalThresholdRegion, Region outFilledOuterRegion) step
+{
+	ThresholdToRegion
+	(
+		inImage: inImage
+		inRoi: Nil
+		inMinValue: 100.000000
+		inMaxValue: Nil
+		outRegion: con_02177644_6209_4fe9_8c61_2403d6f5cf46
+	)
+
+	//This fills the full region even if someone is standing over the maze
+	//:HIDDENPORT[inKernel] TRUE
+	//:HIDDENPORT[inRadiusX] TRUE
+	//:HIDDENPORT[inRadiusY] TRUE
+	CloseRegion
+	(
+		inRegion: con_02177644_6209_4fe9_8c61_2403d6f5cf46
+		inKernel: Box
+		inRadiusX: 5000
+		inRadiusY: 5000
+		outRegion: con_1e6d2774_f590_4253_b080_158c3f21ca1c
+	)
+
+	//Fill remaining holes if any are left (probable not)
+	//:HIDDENPORT[inConnectivity] TRUE
+	//:HIDDENPORT[inMinHoleArea] TRUE
+	//:HIDDENPORT[inMaxHoleArea] TRUE
+	FillRegionHoles
+	(
+		inRegion: con_1e6d2774_f590_4253_b080_158c3f21ca1c
+		inConnectivity: EightDirections
+		inMinHoleArea: Nil
+		inMaxHoleArea: Nil
+		outRegion: con_bfedfcc2_da46_400e_a5e6_59aa1239f7e1
+	)
+
+	outOriginalThresholdRegion = con_02177644_6209_4fe9_8c61_2403d6f5cf46
+
+	outFilledOuterRegion = con_bfedfcc2_da46_400e_a5e6_59aa1239f7e1
+}
+
+public RotateMazeImage(Segment2D inMazeRegionMajorAxis, Image inImage, Image outImage) step
+{
+	CreateSegment
+	(
+		inPoint: Point2D()
+		inPointAnchor: 0.000000
+		inDirection: 0.000000
+		inLength: 100.000000
+		outSegment: con_4078a956_4a5d_4d62_abf1_331617240c61
+	)
+
+	//:HIDDENPORT[inAngleMetric] TRUE
+	//:HIDDENPORT[inAutodetectOrientation] TRUE
+	AngleBetweenSegments
+	(
+		inSegment1: con_4078a956_4a5d_4d62_abf1_331617240c61
+		inSegment2: inMazeRegionMajorAxis
+		inAngleMetric: VectorClockwise
+		inAutodetectOrientation: False
+		outAbsoluteAngle: Nil
+		outDirectedAngle: con_cca4294d_f77e_43df_9b63_ff64dc4bb8fb
+		outArc: Nil
+	)
+
+	//:HIDDENPORT[inSizeMode] TRUE
+	//:HIDDENPORT[inInterpolationMethod] TRUE
+	//:HIDDENPORT[inInverse] TRUE
+	RotateImage
+	(
+		inImage: inImage
+		inAngle: con_cca4294d_f77e_43df_9b63_ff64dc4bb8fb
+		inSizeMode: Fit
+		inInterpolationMethod: Bilinear
+		inInverse: True
+		outImage: con_3e80cfbf_3eb6_4c48_8927_e22369664260
+	)
+
+	outImage = con_3e80cfbf_3eb6_4c48_8927_e22369664260
+}
+
+public FindMazeRectangle(Image inImage, Rectangle2D? outBoundingRectangle) step
+{
+	//:PLUGINCONFIG[inEdgeModel] raceberry_detector.197d6704.EdgeModel.avconfig
+	//:HIDDENPORT[inMinPyramidLevel] TRUE
+	//:HIDDENPORT[inMaxPyramidLevel] TRUE
+	//:HIDDENPORT[inEdgeThreshold] TRUE
+	//:HIDDENPORT[inIgnoreEdgePolarity] TRUE
+	//:HIDDENPORT[inMinScore] TRUE
+	//:HIDDENPORT[inMinDistance] TRUE
+	//:HIDDENPORT[outObjects] TRUE
+	LocateMultipleObjects_Edges
+	(
+		inImage: inImage
+		inSearchRegion: Nil
+		inEdgeModel: EdgeModel<raceberry_detector.b74cd5ac.EdgeModel.avdata>
+		inMinPyramidLevel: 0
+		inMaxPyramidLevel: 3
+		inEdgeThreshold: 10.000000
+		inIgnoreEdgePolarity: False
+		inMinScore: 0.700000
+		inMinDistance: 10.000000
+		outObjects: Nil
+		outPyramidHeight: Nil
+		diagObjectEdges: Nil
+		diagEdgePyramid: Nil
+		diagMatchPyramid: Nil
+		diagScores: Nil
+		outObjects.Match: con_c5e2a65c_6e12_41a0_9eb0_5a2429f60f97
+		outObjects.Alignment: Nil
+		outObjects.Score: Nil
+	)
+
+	RectangleCenter
+	(
+		inRectangle: con_c5e2a65c_6e12_41a0_9eb0_5a2429f60f97
+		outCenterPoint: con_89397690_c2de_4361_ada6_c288dde67db6
+	)
+
+	//:HIDDENPORT[inReferenceSize] TRUE
+	TestArraySizeEqualTo<Point2D>
+	(
+		inArray: con_89397690_c2de_4361_ada6_c288dde67db6
+		inReferenceSize: 4
+		outIsEqual: con_7b9df908_246f_48f0_b7cd_4dd64c650dba
+	)
+
+	//:HIDDENPORT[inRectangleOrientation] TRUE
+	PointsBoundingRectangle
+	(
+		inPoints: con_89397690_c2de_4361_ada6_c288dde67db6
+		inRectangleOrientation: Nil
+		outBoundingRectangle: con_687e4d4a_9afe_4e34_af50_d60f765ebcd5
+		outCenter: Nil
+		outLongSide: Nil
+		outShortSide: Nil
+	)
+
+	MakeConditional<Rectangle2D>
+	(
+		inObject: con_687e4d4a_9afe_4e34_af50_d60f765ebcd5
+		inCondition: con_7b9df908_246f_48f0_b7cd_4dd64c650dba
+		outConditionalObject: con_d5f737b3_e97d_4baa_bfbc_03f456912ac3
+	)
+
+	outBoundingRectangle = con_d5f737b3_e97d_4baa_bfbc_03f456912ac3
 }
 

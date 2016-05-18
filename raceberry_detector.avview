@@ -1,4 +1,4 @@
-﻿<ViewSets Current="Custom2">
+﻿<ViewSets Current="Custom3">
   <ViewSet Name="Custom1">
     <HSplit>
       <Views Width="0.998" Height="0.496">
@@ -15,17 +15,32 @@
         <Views Width="0.998" Height="0.496">
           <View Type="ImageView">
             <Output Name="inImage" Macro="FindMaze" Start="Main" Instance="0" />
-            <Output Name="con_2ef1d48e_d01e_428e_abc5_f98b55938177" Macro="FindMaze" Start="Main" Instance="0" />
           </View>
         </Views>
       </VSplit>
       <VSplit>
         <Views Width="0.998" Height="0.496">
+          <View />
+        </Views>
+      </VSplit>
+    </HSplit>
+  </ViewSet>
+  <ViewSet Name="Custom3">
+    <HSplit>
+      <VSplit>
+        <Views Width="0.998" Height="0.496">
           <View Type="ImageView">
-            <Output Name="con_82f20a33_a640_477a_ac0f_1531e6a89275" Macro="FindMaze" Start="Main" Instance="0" />
+            <Input Name="outImage" Index="6" Macro="FindPololus" Start="Main" Instance="0" />
             <ViewState>
-              <ViewMode Mode="Manual" Scale="0.2" X="140" Y="23" />
+              <ViewMode Mode="Manual" Scale="1" X="-871" Y="-385" />
             </ViewState>
+          </View>
+        </Views>
+      </VSplit>
+      <VSplit>
+        <Views Width="0.998" Height="0.496">
+          <View Type="TextView">
+            <Output Name="con_4db15a9f_7aed_40b9_a8cc_96a30b6ce37c" Macro="FindPololus" Start="Main" Instance="0" />
           </View>
         </Views>
       </VSplit>
