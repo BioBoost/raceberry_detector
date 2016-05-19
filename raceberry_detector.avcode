@@ -1,10 +1,20 @@
 public Main()
 {
+	//:HIDDENPORT[inParameterName] TRUE
+	//:HIDDENPORT[inVerify] TRUE
+	disabled GigEVision_SetRealParameter
+	(
+		inAddress: "00:0F:31:4C:99:3A"
+		inParameterName: "ExposureTimeAbs"
+		inValue: 40000.000000
+		inVerify: True
+	)
+
 	//:HIDDENPORT[inPixelFormat] TRUE
 	//:HIDDENPORT[inInputQueueSize] TRUE
 	GigEVision_GrabImage
 	(
-		inAddress: "10.182.34.101"
+		inAddress: "00:0F:31:4C:99:3A"
 		inPixelFormat: "BayerRG8"
 		inInputQueueSize: 1
 		outFrame: con_3f9e9967_4ab7_4159_a595_443b1829b7c1
@@ -19,19 +29,21 @@ public Main()
 		inMazeROI:
 			Box
 			(
-				X: 24
-				Y: 18
-				Width: 2412
-				Height: 1516
+				X: -4
+				Y: 434
+				Width: 2444
+				Height: 1328
 			)
-		inLowSaturate: 116.000000
-		inHighSaturate: 230.000000
-		outImage: con_2e5fd2d0_7f1f_4e67_b59d_0040f08c07f0
+		inLowSaturate: 170.000000
+		inHighSaturate: 170.000000
+		outSaturatedImage: con_2e5fd2d0_7f1f_4e67_b59d_0040f08c07f0
+		outGreyImage: con_6c3e02d0_9e2a_4d5b_a486_7001316676d2
 	)
 
 	FindMaze
 	(
-		inImage: con_2e5fd2d0_7f1f_4e67_b59d_0040f08c07f0
+		inGreyImage: con_6c3e02d0_9e2a_4d5b_a486_7001316676d2
+		inSaturatedImage: con_2e5fd2d0_7f1f_4e67_b59d_0040f08c07f0
 		outRotatedCroppedImage: con_179746bf_6035_4bbe_ace0_a4257a0800c1
 		outRotatedCroppedImage.Width: con_4a48c183_07df_432b_9a97_f84dffbffe4b
 		outRotatedCroppedImage.Height: con_bd0404b1_5c3d_4b4d_8441_1405d80063fa
@@ -42,7 +54,7 @@ public Main()
 	//:COORDINATESYSTEM[inSelectCenterArea] Absolute
 	//:BGIMAGE[inSelectTopArea] con_179746bf_6035_4bbe_ace0_a4257a0800c1
 	//:COORDINATESYSTEM[inSelectTopArea] Absolute
-	//:BGIMAGE[inDotCircleArea] con_2e5fd2d0_7f1f_4e67_b59d_0040f08c07f0
+	//:BGIMAGE[inDotCircleArea] con_179746bf_6035_4bbe_ace0_a4257a0800c1
 	//:COORDINATESYSTEM[inDotCircleArea] Absolute
 	Configuration
 	(
@@ -52,10 +64,10 @@ public Main()
 				Center:
 					Point2D
 					(
-						X: 1209.869629
-						Y: 586.717224
+						X: 1666.237427
+						Y: 651.266296
 					)
-				Radius: 9.168686
+				Radius: 7.622190
 			)
 		inImageWidth: con_4a48c183_07df_432b_9a97_f84dffbffe4b
 		inImageHeight: con_bd0404b1_5c3d_4b4d_8441_1405d80063fa
@@ -65,10 +77,10 @@ public Main()
 				Center:
 					Point2D
 					(
-						X: 1210.168945
-						Y: 585.145874
+						X: 1660.786133
+						Y: 644.877869
 					)
-				Radius: 41.501400
+				Radius: 37.816422
 			)
 		inDotCircleArea:
 			Circle2D
@@ -76,16 +88,18 @@ public Main()
 				Center:
 					Point2D
 					(
-						X: 1323.147461
-						Y: 833.113159
+						X: 1686.576904
+						Y: 656.043640
 					)
-				Radius: 3.993531
+				Radius: 2.628158
 			)
+		inMazeWidth: 2400.000000
+		inMazeHeight: 1180.000000
 		outMinimalCenterArea: con_acde6656_8f18_4ab9_a342_553d10d9e3b5
 		outMaximalCenterArea: con_e9d5cee5_7130_4655_a517_73ce1e3e2486
 		outTopAreaRadius: con_107a7d07_2802_4d9a_b263_29b4dffbc469
-		outMinimalDotArea: con_870641ce_0db9_4676_a63d_ef9bc28697bf
-		outMaximalDotArea: con_a73af5d2_46ff_403b_90a9_83883065f21b
+		outScaleX: con_61dd1d86_1296_4d20_9d22_a0523211cd72
+		outScaleY: con_307c780e_6363_49e0_9396_be706a281845
 	)
 
 	FindPololus
@@ -94,27 +108,57 @@ public Main()
 		inMinCenterArea: con_acde6656_8f18_4ab9_a342_553d10d9e3b5
 		inMaxCenterArea: con_e9d5cee5_7130_4655_a517_73ce1e3e2486
 		inROIRadius: con_107a7d07_2802_4d9a_b263_29b4dffbc469
-		inMinDotArea: con_870641ce_0db9_4676_a63d_ef9bc28697bf
-		inMaxDotArea: con_a73af5d2_46ff_403b_90a9_83883065f21b
-		outImage: Nil
+		outImage: con_24c1d0b3_01f7_41c8_a6f0_f72f60c4898f
+		outIds: con_c0dc347c_96d0_4533_aded_270e2e81a864
+		outPositionsX: con_8b72f080_0322_454d_9a71_f412a5b7b793
+		outPositionsY: con_8743b5e5_eaae_4426_8009_f9b2cabcf6c7
+		outDirectionAngleRadians: con_2d6e8b63_ef16_4538_a6f0_e0a17b6ba014
+	)
+
+	PixelsToMillimetres
+	(
+		inPixels: con_8b72f080_0322_454d_9a71_f412a5b7b793
+		inScale: con_61dd1d86_1296_4d20_9d22_a0523211cd72
+		outMillimetres: con_68e544e0_11c3_4464_b98f_e81504609178
+	)
+
+	PixelsToMillimetres
+	(
+		inPixels: con_8743b5e5_eaae_4426_8009_f9b2cabcf6c7
+		inScale: con_307c780e_6363_49e0_9396_be706a281845
+		outMillimetres: con_7385c4f9_0af9_4ab2_a130_aef65f4b6fbd
+	)
+
+	CreatePositionAndDirectionJson
+	(
+		inId: con_c0dc347c_96d0_4533_aded_270e2e81a864
+		inXPosition: con_68e544e0_11c3_4464_b98f_e81504609178
+		inYPosition: con_7385c4f9_0af9_4ab2_a130_aef65f4b6fbd
+		inAngle: con_2d6e8b63_ef16_4538_a6f0_e0a17b6ba014
+		outJsonString: con_b281e5c6_f74a_48ea_bf3f_502dd505daa3
+	)
+
+	CreateJsonArrayOfPololus
+	(
+		inJsonStrings: con_b281e5c6_f74a_48ea_bf3f_502dd505daa3
 		outJsonString: Nil
 	)
 }
 
-public FindMaze(Image inImage, Image? outRotatedCroppedImage) step
-	expand inImage.Width
-	expand inImage.Height
+public FindMaze(Image inGreyImage, Image inSaturatedImage, Image? outRotatedCroppedImage) step
+	expand inGreyImage.Width
+	expand inGreyImage.Height
 {
 	FindMazeRectangle
 	(
-		inImage: inImage
+		inImage: inGreyImage
 		outBoundingRectangle: con_75455fd7_96c4_4d34_9f8e_ba371cbed624
 	)
 
 	//:HIDDENPORT[inInterpolationMethod] TRUE
 	CropImageToRectangle
 	(
-		inImage: inImage
+		inImage: inSaturatedImage
 		inRectangle: con_75455fd7_96c4_4d34_9f8e_ba371cbed624
 		inRectangleAlignment: Nil
 		inInterpolationMethod: Bilinear
@@ -126,25 +170,23 @@ public FindMaze(Image inImage, Image? outRotatedCroppedImage) step
 	outRotatedCroppedImage = con_18d6a6e9_f2c3_4da3_8d8c_158a467ba01b
 }
 
-public FindPololus(Image inImage, Integer<0, INF> inMinCenterArea, Integer<0, INF>* inMaxCenterArea, Real<0, INF> inROIRadius, Integer<0, INF> inMinDotArea, Integer<0, INF>* inMaxDotArea, Image outImage, String outJsonString) step
+public FindPololus(Image inImage, Integer<0, INF> inMinCenterArea, Integer<0, INF>* inMaxCenterArea, Real<0, INF> inROIRadius, Image outImage, IntegerArray outIds, RealArray outPositionsX, RealArray outPositionsY, Real?Array outDirectionAngleRadians) step
 {
 	FindCentersOfPololus
 	(
 		inMinCenterArea: inMinCenterArea
 		inMaxCenterArea: inMaxCenterArea
 		inImage: inImage
-		inMaxCenterThreshold: 90.000000
+		inMaxCenterThreshold: 100.000000
 		outCenters: con_21b5bc4f_a8d7_4883_9072_17a87f4673eb
 	)
 
-	DetermineDirection
+	DetermineDirectionAndID
 	(
 		inPoint: con_21b5bc4f_a8d7_4883_9072_17a87f4673eb
 		inImage: inImage
 		inROIRadius: inROIRadius
-		inDirectionMaxTheshold: 80.000000
-		inMinDotArea: inMinDotArea
-		inMaxDotArea: inMaxDotArea
+		inDirectionMaxTheshold: 100.000000
 		outCenter: con_f09e5726_dde0_429e_bb1e_3407c961562a
 		outDirectionVector: con_dfcb70b8_3be4_43f9_a1c3_4dc64a582e5d
 		outDirectionAngleRadians: con_8019b420_a659_4952_bb29_d56254acca8a
@@ -274,24 +316,15 @@ public FindPololus(Image inImage, Integer<0, INF> inMinCenterArea, Integer<0, IN
 		outImage: con_c9e41a62_23e1_4923_8be1_e3fc0f0025f2
 	)
 
-	CreatePositionAndDirectionJson
-	(
-		inId: con_a8a17058_c4c0_42ec_9586_ba8e2fa1dc58
-		inXPosition: con_8c1c14e5_ca3d_4d3f_abbc_96837da0f4f6
-		inYPosition: con_4c6eda57_43fb_4262_842f_8e8e1b1804a7
-		inAngle: con_8019b420_a659_4952_bb29_d56254acca8a
-		outJsonString: con_4db15a9f_7aed_40b9_a8cc_96a30b6ce37c
-	)
-
-	CreateJsonArrayOfPololus
-	(
-		inJsonStrings: con_4db15a9f_7aed_40b9_a8cc_96a30b6ce37c
-		outJsonString: con_a354dc49_c685_40b7_b9c9_8dd3b9b03110
-	)
-
 	outImage = con_c9e41a62_23e1_4923_8be1_e3fc0f0025f2
 
-	outJsonString = con_a354dc49_c685_40b7_b9c9_8dd3b9b03110
+	outIds = con_a8a17058_c4c0_42ec_9586_ba8e2fa1dc58
+
+	outPositionsX = con_8c1c14e5_ca3d_4d3f_abbc_96837da0f4f6
+
+	outPositionsY = con_4c6eda57_43fb_4262_842f_8e8e1b1804a7
+
+	outDirectionAngleRadians = con_8019b420_a659_4952_bb29_d56254acca8a
 }
 
 public FindCentersOfPololus(Integer<0, INF> inMinCenterArea = 200, Integer<0, INF>* inMaxCenterArea = 300, Image inImage, Real* inMaxCenterThreshold = 90.000000, Point2DArray outCenters) step
@@ -385,7 +418,7 @@ public FindCentersOfPololus(Integer<0, INF> inMinCenterArea = 200, Integer<0, IN
 }
 
 //:OUTPUTHELP[outDirectionAngleRadians] In radians
-public DetermineDirection(Point2D inPoint, Image inImage, Real<0, INF> inROIRadius = 60.000000, Real* inDirectionMaxTheshold = 80.000000, Integer<0, INF> inMinDotArea, Integer<0, INF>* inMaxDotArea, Point2D outCenter, Vector2D? outDirectionVector, Real? outDirectionAngleRadians, Circle2D outROICircle, Integer outDotCount, Real? outDirectionAngleDegrees) step
+public DetermineDirectionAndID(Point2D inPoint, Image inImage, Real<0, INF> inROIRadius = 60.000000, Real* inDirectionMaxTheshold = 80.000000, Point2D outCenter, Vector2D? outDirectionVector, Real? outDirectionAngleRadians, Circle2D outROICircle, Integer outDotCount, Real? outDirectionAngleDegrees) step
 	expand inImage.Width
 	expand inImage.Height
 {
@@ -424,8 +457,8 @@ public DetermineDirection(Point2D inPoint, Image inImage, Real<0, INF> inROIRadi
 	(
 		inRegion: con_1897ee53_30c3_4870_b746_5625050ba621
 		inConnectivity: FourDirections
-		inMinBlobArea: 10
-		inMaxBlobArea: 300
+		inMinBlobArea: 1
+		inMaxBlobArea: Nil
 		inRemoveBoundaryBlobs: False
 		outBlobs: con_b79d96a3_704a_4dbc_a6a3_d7c8824a10ba
 	)
@@ -451,7 +484,7 @@ public DetermineDirection(Point2D inPoint, Image inImage, Real<0, INF> inROIRadi
 		inRegions: con_b79d96a3_704a_4dbc_a6a3_d7c8824a10ba
 		inFeature: Elongation
 		inMinimum: 2.000000
-		inMaximum: 5.000000
+		inMaximum: 10.000000
 		outAccepted: con_48436912_5561_4d27_a78b_7a548c321dbe
 		outRejected: con_d64f5a1b_7e56_4e50_96d5_ed29cd814cd2
 		outBelow: Nil
@@ -500,21 +533,21 @@ public DetermineDirection(Point2D inPoint, Image inImage, Real<0, INF> inROIRadi
 		outRadians: con_bdfd2fa9_bd5a_4b7d_b24f_c8b00105e168
 	)
 
-	//:HIDDENPORT[inFeature] TRUE
-	//:HIDDENPORT[outBelow] TRUE
-	//:HIDDENPORT[outAbove] TRUE
-	ClassifyRegions
+	//Remove center region from list and count remaining dots
+	TestPointInRegion
 	(
-		inRegions: con_d64f5a1b_7e56_4e50_96d5_ed29cd814cd2
-		inFeature: Area
-		inMinimum: inMinDotArea
-		inMaximum: inMaxDotArea
+		inPoint: inPoint
+		inRegion: con_d64f5a1b_7e56_4e50_96d5_ed29cd814cd2
+		outIsContained: con_f30b6c76_de7e_496c_bd41_7eb8a806552e
+	)
+
+	ClassifyByPredicate<Region>
+	(
+		inArray: con_d64f5a1b_7e56_4e50_96d5_ed29cd814cd2
+		inPredicate: con_f30b6c76_de7e_496c_bd41_7eb8a806552e
 		outAccepted: Nil
 		outRejected: Nil
-		outBelow: Nil
-		outAbove: Nil
-		outValues: Nil
-		outAccepted.Count: con_55996ca6_047e_4b04_a361_aaf8f9b223a7
+		outRejected.Count: con_12665de3_5901_4e4f_b784_078b43d92fe8
 	)
 
 	outCenter = inPoint
@@ -525,7 +558,7 @@ public DetermineDirection(Point2D inPoint, Image inImage, Real<0, INF> inROIRadi
 
 	outROICircle = con_e62ad94c_fc3e_4638_9573_8b185477fdb5
 
-	outDotCount = con_55996ca6_047e_4b04_a361_aaf8f9b223a7
+	outDotCount = con_12665de3_5901_4e4f_b784_078b43d92fe8
 
 	outDirectionAngleDegrees = con_257c7747_c6e8_4cdb_b6af_618bf074a85f
 }
@@ -628,7 +661,7 @@ public CreateJsonArrayOfPololus(String?Array inJsonStrings, String outJsonString
 	outJsonString = con_b4383cb0_8101_404b_89a2_858e6bd1bd7b
 }
 
-public PreprocessImage(Image inImage, Box inMazeROI, Real inLowSaturate = 116.000000, Real inHighSaturate = 230.000000, Image outImage) step
+public PreprocessImage(Image inImage, Box inMazeROI, Real inLowSaturate = 116.000000, Real inHighSaturate = 230.000000, Image outSaturatedImage, Image outGreyImage) step
 {
 	AverageChannels
 	(
@@ -662,11 +695,15 @@ public PreprocessImage(Image inImage, Box inMazeROI, Real inLowSaturate = 116.00
 		outImage: con_de7c58b6_03dd_4912_b0d3_363db2f77983
 	)
 
-	outImage = con_de7c58b6_03dd_4912_b0d3_363db2f77983
+	outSaturatedImage = con_de7c58b6_03dd_4912_b0d3_363db2f77983
+
+	outGreyImage = con_df57dc1a_b07c_4c36_8380_9501b0ad5f4c
 }
 
 //:INPUTHELP[inSelectCenterArea] Please select center circel of a pololu (real dark pixels)
-public Configuration(Circle2D inSelectCenterArea, Integer<0, INF> inImageWidth, Integer<0, INF> inImageHeight, Circle2D inSelectTopArea, Circle2D inDotCircleArea, Integer outMinimalCenterArea, Integer outMaximalCenterArea, Real outTopAreaRadius, Integer outMinimalDotArea, Integer outMaximalDotArea) step
+//:INPUTHELP[inMazeWidth] In millimeters
+//:INPUTHELP[inMazeHeight] In millimeters
+public Configuration(Circle2D inSelectCenterArea, Integer<0, INF> inImageWidth, Integer<0, INF> inImageHeight, Circle2D inSelectTopArea, Circle2D inDotCircleArea, Real inMazeWidth = 2400.000000, Real inMazeHeight = 1180.000000, Integer outMinimalCenterArea, Integer outMaximalCenterArea, Real outTopAreaRadius, Real outScaleX, Real outScaleY) step
 	expand inSelectTopArea.Radius
 {
 	CircleArea
@@ -684,7 +721,7 @@ public Configuration(Circle2D inSelectCenterArea, Integer<0, INF> inImageWidth, 
 	}
 	(
 		inArea: con_d22b514c_dc88_4902_801b_e63101cf044b
-		inPercentage: 25
+		inPercentage: 40
 		outMinimalCenterArea: con_3cdf928b_d5e2_49e1_96ca_afce44bc757a
 		outMaximalCenterArea: con_9d404a1a_e13f_4c7f_b7bc_6556828ebe61
 	)
@@ -709,13 +746,13 @@ public Configuration(Circle2D inSelectCenterArea, Integer<0, INF> inImageWidth, 
 		outAlignedCircle: Nil
 	)
 
-	CircleArea
+	disabled CircleArea
 	(
 		inCircle: inDotCircleArea
 		outArea: con_7d5a1c67_7796_4bba_8744_3095713c1d21
 	)
 
-	expression
+	disabled expression
 	{
 		Integer inArea
 		Integer inPercentage
@@ -724,9 +761,27 @@ public Configuration(Circle2D inSelectCenterArea, Integer<0, INF> inImageWidth, 
 	}
 	(
 		inArea: con_7d5a1c67_7796_4bba_8744_3095713c1d21
-		inPercentage: 40
-		outMinimalDotArea: con_7c2f0d5c_e4e2_4c86_9a59_61cf3154d104
-		outMaximalDotArea: con_fa3a3063_ef92_4ecb_b3e1_f9d785cfedad
+		inPercentage: 80
+		outMinimalDotArea: Nil
+		outMaximalDotArea: Nil
+	)
+
+	expression
+	{
+		Integer inImageWidth
+		Integer inImageHeight
+		Real inMazeWidth
+		Real inMazeHeight
+		Real outScaleX = "inImageWidth/inMazeWidth"
+		Real outScaleY = "inImageHeight/inMazeHeight"
+	}
+	(
+		inImageWidth: inImageWidth
+		inImageHeight: inImageHeight
+		inMazeWidth: inMazeWidth
+		inMazeHeight: inMazeHeight
+		outScaleX: con_771f2f1f_fb9d_4bda_9a27_4d53fabcfc1a
+		outScaleY: con_180843df_3c5f_40c4_b050_9e9a35706b39
 	)
 
 	outMinimalCenterArea = con_3cdf928b_d5e2_49e1_96ca_afce44bc757a
@@ -735,9 +790,9 @@ public Configuration(Circle2D inSelectCenterArea, Integer<0, INF> inImageWidth, 
 
 	outTopAreaRadius = inSelectTopArea.Radius
 
-	outMinimalDotArea = con_7c2f0d5c_e4e2_4c86_9a59_61cf3154d104
+	outScaleX = con_771f2f1f_fb9d_4bda_9a27_4d53fabcfc1a
 
-	outMaximalDotArea = con_fa3a3063_ef92_4ecb_b3e1_f9d785cfedad
+	outScaleY = con_180843df_3c5f_40c4_b050_9e9a35706b39
 }
 
 public FindOuterMazeRegion(Image inImage, Region outOriginalThresholdRegion, Region outFilledOuterRegion) step
@@ -868,11 +923,78 @@ public FindMazeRectangle(Image inImage, Rectangle2D? outBoundingRectangle) step
 		outIsEqual: con_7b9df908_246f_48f0_b7cd_4dd64c650dba
 	)
 
-	//:HIDDENPORT[inRectangleOrientation] TRUE
+	MakeConditional<Point2DArray>
+	(
+		inObject: con_89397690_c2de_4361_ada6_c288dde67db6
+		inCondition: con_7b9df908_246f_48f0_b7cd_4dd64c650dba
+		outConditionalObject: con_a3c4613e_1907_4d6f_81ba_929c1921a19a
+	)
+
+	PointToPointDistance
+	(
+		inPoint1: con_a3c4613e_1907_4d6f_81ba_929c1921a19a
+		inPoint2: Point2D()
+		inResolution: 1.000000
+		outDistance: con_9a0250be_3681_4818_86e2_607a79bbb062
+		outConnectingSegment: Nil
+	)
+
+	//:HIDDENPORT[inSortingOrder] TRUE
+	SortArray<Point2D>
+	(
+		inArray: con_89397690_c2de_4361_ada6_c288dde67db6
+		inValues: con_9a0250be_3681_4818_86e2_607a79bbb062
+		inSortingOrder: Ascending
+		outSortedArray: con_935f9db9_47b2_4b4e_a528_41464e75079e
+		outSortedValues: Nil
+	)
+
+	//:HIDDENPORT[inInverse] TRUE
+	GetArrayElement<Point2D>
+	(
+		inArray: con_935f9db9_47b2_4b4e_a528_41464e75079e
+		inIndex: 0
+		inInverse: False
+		outValue: con_e55f2f87_9e34_42c8_8da6_b5e2ae86d4ce
+	)
+
+	//:HIDDENPORT[inInverse] TRUE
+	GetArrayElement<Point2D>
+	(
+		inArray: con_935f9db9_47b2_4b4e_a528_41464e75079e
+		inIndex: 1
+		inInverse: False
+		outValue: con_086906f6_fcd7_4528_8163_8b24363577dd
+	)
+
+	VectorBetweenPoints
+	(
+		inFrom: con_e55f2f87_9e34_42c8_8da6_b5e2ae86d4ce
+		inTo: con_086906f6_fcd7_4528_8163_8b24363577dd
+		outVector: con_a273db17_2fba_4e50_937e_276a451094be
+	)
+
+	CreateVector
+	(
+		inLength: 10.000000
+		inDirection: 90.000000
+		outVector: con_d45d03ff_2091_4416_b15c_6896116ce6e6
+	)
+
+	//:HIDDENPORT[inRotationDirection] TRUE
+	AngleBetweenVectors
+	(
+		inVector1: con_d45d03ff_2091_4416_b15c_6896116ce6e6
+		inVector2: con_a273db17_2fba_4e50_937e_276a451094be
+		inRotationDirection: Nil
+		outAbsoluteAngle: Nil
+		outDirectedAngle: con_f6b21bf1_c45c_425d_826f_50e80a6730ed
+	)
+
 	PointsBoundingRectangle
 	(
 		inPoints: con_89397690_c2de_4361_ada6_c288dde67db6
-		inRectangleOrientation: Nil
+		inRectangleOrientation: con_f6b21bf1_c45c_425d_826f_50e80a6730ed
 		outBoundingRectangle: con_687e4d4a_9afe_4e34_af50_d60f765ebcd5
 		outCenter: Nil
 		outLongSide: Nil
@@ -883,9 +1005,9 @@ public FindMazeRectangle(Image inImage, Rectangle2D? outBoundingRectangle) step
 	(
 		inObject: con_687e4d4a_9afe_4e34_af50_d60f765ebcd5
 		inCondition: con_7b9df908_246f_48f0_b7cd_4dd64c650dba
-		outConditionalObject: con_d5f737b3_e97d_4baa_bfbc_03f456912ac3
+		outConditionalObject: con_ca2f408e_c7bb_405d_a375_54eef42f51f3
 	)
 
-	outBoundingRectangle = con_d5f737b3_e97d_4baa_bfbc_03f456912ac3
+	outBoundingRectangle = con_ca2f408e_c7bb_405d_a375_54eef42f51f3
 }
 
