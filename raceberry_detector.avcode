@@ -1046,6 +1046,53 @@ public DetectorLoop(SocketId? inTcpSocket, Image? outImage)
 		outDisconnected: Nil
 	)
 
+	disabled Tests
+	(
+		inExpectedRobotIds:
+			{
+				1
+				2
+				3
+				4
+				5
+				6
+				7
+			}
+		inActualRobotsIds: con_c0dc347c_96d0_4533_aded_270e2e81a864
+		inRotatedCroppedImage: con_179746bf_6035_4bbe_ace0_a4257a0800c1
+		outRobotsIdsPassed: Nil
+		outMazeFound: Nil
+	)
+
 	outImage = con_12f59ac2_79e9_43c0_a0ad_b62e341d5843
+}
+
+public Tests(IntegerArray inExpectedRobotIds, IntegerArray inActualRobotsIds, Image? inRotatedCroppedImage, Bool outRobotsIdsPassed, Bool outMazeFound) step
+{
+	ArrayDifference<Integer>
+	(
+		inArray1: inExpectedRobotIds
+		inArray2: inActualRobotsIds
+		outArray: con_4263c884_81f5_414a_abb0_2e4e5a5c117b
+		outArray.Count: con_f699b439_9447_435a_8291_165cd2e55dd2
+	)
+
+	//:HIDDENPORT[inReferenceValue] TRUE
+	TestIntegerEqualTo
+	(
+		inValue: con_f699b439_9447_435a_8291_165cd2e55dd2
+		inReferenceValue: 0
+		outIsEqual: con_5a675cf2_7de9_4839_b5e2_1823f7875dd6
+	)
+
+	TestObjectNotNil<Image>
+	(
+		inObject: inRotatedCroppedImage
+		outIsNotNil: con_01c9a6af_4329_45ae_bcbd_a08ecbbc9855
+	)
+
+	outRobotsIdsPassed = con_5a675cf2_7de9_4839_b5e2_1823f7875dd6
+
+	outMazeFound = con_01c9a6af_4329_45ae_bcbd_a08ecbbc9855
 }
 

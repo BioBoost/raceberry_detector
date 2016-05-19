@@ -28,18 +28,24 @@
   <ViewSet Name="Custom3">
     <HSplit>
       <VSplit>
-        <Views Width="0.998" Height="0.720">
+        <Views Width="0.998" Height="0.672">
           <View Type="ImageView">
             <Output Name="con_12f59ac2_79e9_43c0_a0ad_b62e341d5843" Macro="DetectorLoop" Start="Main" Instance="0" />
             <ViewState>
-              <ViewMode Mode="Manual" Scale="0.333333333333333" X="-29" Y="69" />
+              <ViewMode Mode="Manual" Scale="0.4" X="-158" Y="19" />
             </ViewState>
           </View>
         </Views>
       </VSplit>
       <VSplit>
-        <Views Width="0.998" Height="0.272">
-          <View />
+        <Views Width="0.998" Height="0.320">
+          <View Type="TextView">
+            <Input Name="outRobotsIdsPassed" Index="3" Macro="Tests" Start="Main" Instance="0" />
+            <Input Name="outMazeFound" Index="3" Macro="Tests" Start="Main" Instance="0" />
+            <Input Name="inArray1" Index="0" Macro="Tests" Start="Main" Instance="0" />
+            <Input Name="inArray2" Index="0" Macro="Tests" Start="Main" Instance="0" />
+            <Output Name="con_4263c884_81f5_414a_abb0_2e4e5a5c117b" Macro="Tests" Start="Main" Instance="0" />
+          </View>
         </Views>
       </VSplit>
     </HSplit>
