@@ -2,7 +2,7 @@ public Main()
 {
 	//:HIDDENPORT[inParameterName] TRUE
 	//:HIDDENPORT[inVerify] TRUE
-	disabled GigEVision_SetRealParameter
+	GigEVision_SetRealParameter
 	(
 		inAddress: "00:0F:31:4C:99:3A"
 		inParameterName: "ExposureTimeAbs"
@@ -10,138 +10,26 @@ public Main()
 		inVerify: True
 	)
 
-	//:HIDDENPORT[inPixelFormat] TRUE
-	//:HIDDENPORT[inInputQueueSize] TRUE
-	GigEVision_GrabImage
+	//:HIDDENPORT[inTimeout] TRUE
+	TcpIp_Connect
 	(
-		inAddress: "00:0F:31:4C:99:3A"
-		inPixelFormat: "BayerRG8"
-		inInputQueueSize: 1
-		outFrame: con_3f9e9967_4ab7_4159_a595_443b1829b7c1
-		outFrameID: Nil
-		outTimestamp: Nil
+		inHost: "10.182.34.184"
+		inPort: 1337
+		inTimeout: 1000
+		outSocket: con_4fe407ca_9949_4608_b55c_ababa3b8f13d
 	)
 
-	//:BGIMAGE[inMazeROI] @input:inImage
-	PreprocessImage
+	DetectorLoop
 	(
-		inImage: con_3f9e9967_4ab7_4159_a595_443b1829b7c1
-		inMazeROI:
-			Box
-			(
-				X: -4
-				Y: 434
-				Width: 2444
-				Height: 1328
-			)
-		inLowSaturate: 170.000000
-		inHighSaturate: 170.000000
-		outSaturatedImage: con_2e5fd2d0_7f1f_4e67_b59d_0040f08c07f0
-		outGreyImage: con_6c3e02d0_9e2a_4d5b_a486_7001316676d2
+		inTcpSocket: con_4fe407ca_9949_4608_b55c_ababa3b8f13d
+		outImage: Nil
 	)
 
-	FindMaze
+	//:HIDDENPORT[inGraceful] TRUE
+	TcpIp_Close
 	(
-		inGreyImage: con_6c3e02d0_9e2a_4d5b_a486_7001316676d2
-		inSaturatedImage: con_2e5fd2d0_7f1f_4e67_b59d_0040f08c07f0
-		outRotatedCroppedImage: con_179746bf_6035_4bbe_ace0_a4257a0800c1
-		outRotatedCroppedImage.Width: con_4a48c183_07df_432b_9a97_f84dffbffe4b
-		outRotatedCroppedImage.Height: con_bd0404b1_5c3d_4b4d_8441_1405d80063fa
-	)
-
-	//Use this to configure the program easily
-	//:BGIMAGE[inSelectCenterArea] con_179746bf_6035_4bbe_ace0_a4257a0800c1
-	//:COORDINATESYSTEM[inSelectCenterArea] Absolute
-	//:BGIMAGE[inSelectTopArea] con_179746bf_6035_4bbe_ace0_a4257a0800c1
-	//:COORDINATESYSTEM[inSelectTopArea] Absolute
-	//:BGIMAGE[inDotCircleArea] con_179746bf_6035_4bbe_ace0_a4257a0800c1
-	//:COORDINATESYSTEM[inDotCircleArea] Absolute
-	Configuration
-	(
-		inSelectCenterArea:
-			Circle2D
-			(
-				Center:
-					Point2D
-					(
-						X: 1666.237427
-						Y: 651.266296
-					)
-				Radius: 7.622190
-			)
-		inImageWidth: con_4a48c183_07df_432b_9a97_f84dffbffe4b
-		inImageHeight: con_bd0404b1_5c3d_4b4d_8441_1405d80063fa
-		inSelectTopArea:
-			Circle2D
-			(
-				Center:
-					Point2D
-					(
-						X: 1660.786133
-						Y: 644.877869
-					)
-				Radius: 37.816422
-			)
-		inDotCircleArea:
-			Circle2D
-			(
-				Center:
-					Point2D
-					(
-						X: 1686.576904
-						Y: 656.043640
-					)
-				Radius: 2.628158
-			)
-		inMazeWidth: 2400.000000
-		inMazeHeight: 1180.000000
-		outMinimalCenterArea: con_acde6656_8f18_4ab9_a342_553d10d9e3b5
-		outMaximalCenterArea: con_e9d5cee5_7130_4655_a517_73ce1e3e2486
-		outTopAreaRadius: con_107a7d07_2802_4d9a_b263_29b4dffbc469
-		outScaleX: con_61dd1d86_1296_4d20_9d22_a0523211cd72
-		outScaleY: con_307c780e_6363_49e0_9396_be706a281845
-	)
-
-	FindPololus
-	(
-		inImage: con_179746bf_6035_4bbe_ace0_a4257a0800c1
-		inMinCenterArea: con_acde6656_8f18_4ab9_a342_553d10d9e3b5
-		inMaxCenterArea: con_e9d5cee5_7130_4655_a517_73ce1e3e2486
-		inROIRadius: con_107a7d07_2802_4d9a_b263_29b4dffbc469
-		outImage: con_24c1d0b3_01f7_41c8_a6f0_f72f60c4898f
-		outIds: con_c0dc347c_96d0_4533_aded_270e2e81a864
-		outPositionsX: con_8b72f080_0322_454d_9a71_f412a5b7b793
-		outPositionsY: con_8743b5e5_eaae_4426_8009_f9b2cabcf6c7
-		outDirectionAngleRadians: con_2d6e8b63_ef16_4538_a6f0_e0a17b6ba014
-	)
-
-	PixelsToMillimetres
-	(
-		inPixels: con_8b72f080_0322_454d_9a71_f412a5b7b793
-		inScale: con_61dd1d86_1296_4d20_9d22_a0523211cd72
-		outMillimetres: con_68e544e0_11c3_4464_b98f_e81504609178
-	)
-
-	PixelsToMillimetres
-	(
-		inPixels: con_8743b5e5_eaae_4426_8009_f9b2cabcf6c7
-		inScale: con_307c780e_6363_49e0_9396_be706a281845
-		outMillimetres: con_7385c4f9_0af9_4ab2_a130_aef65f4b6fbd
-	)
-
-	CreatePositionAndDirectionJson
-	(
-		inId: con_c0dc347c_96d0_4533_aded_270e2e81a864
-		inXPosition: con_68e544e0_11c3_4464_b98f_e81504609178
-		inYPosition: con_7385c4f9_0af9_4ab2_a130_aef65f4b6fbd
-		inAngle: con_2d6e8b63_ef16_4538_a6f0_e0a17b6ba014
-		outJsonString: con_b281e5c6_f74a_48ea_bf3f_502dd505daa3
-	)
-
-	CreateJsonArrayOfPololus
-	(
-		inJsonStrings: con_b281e5c6_f74a_48ea_bf3f_502dd505daa3
-		outJsonString: Nil
+		inSocket: con_4fe407ca_9949_4608_b55c_ababa3b8f13d
+		inGraceful: True
 	)
 }
 
@@ -1009,5 +897,155 @@ public FindMazeRectangle(Image inImage, Rectangle2D? outBoundingRectangle) step
 	)
 
 	outBoundingRectangle = con_ca2f408e_c7bb_405d_a375_54eef42f51f3
+}
+
+public DetectorLoop(SocketId? inTcpSocket, Image? outImage)
+{
+	//:HIDDENPORT[inPixelFormat] TRUE
+	//:HIDDENPORT[inInputQueueSize] TRUE
+	GigEVision_GrabImage
+	(
+		inAddress: "00:0F:31:4C:99:3A"
+		inPixelFormat: "BayerRG8"
+		inInputQueueSize: 1
+		outFrame: con_3f9e9967_4ab7_4159_a595_443b1829b7c1
+		outFrameID: Nil
+		outTimestamp: Nil
+	)
+
+	//:BGIMAGE[inMazeROI] @input:inImage
+	PreprocessImage
+	(
+		inImage: con_3f9e9967_4ab7_4159_a595_443b1829b7c1
+		inMazeROI:
+			Box
+			(
+				X: -4
+				Y: 434
+				Width: 2444
+				Height: 1328
+			)
+		inLowSaturate: 170.000000
+		inHighSaturate: 170.000000
+		outSaturatedImage: con_2e5fd2d0_7f1f_4e67_b59d_0040f08c07f0
+		outGreyImage: con_6c3e02d0_9e2a_4d5b_a486_7001316676d2
+	)
+
+	FindMaze
+	(
+		inGreyImage: con_6c3e02d0_9e2a_4d5b_a486_7001316676d2
+		inSaturatedImage: con_2e5fd2d0_7f1f_4e67_b59d_0040f08c07f0
+		outRotatedCroppedImage: con_179746bf_6035_4bbe_ace0_a4257a0800c1
+		outRotatedCroppedImage.Width: con_4a48c183_07df_432b_9a97_f84dffbffe4b
+		outRotatedCroppedImage.Height: con_bd0404b1_5c3d_4b4d_8441_1405d80063fa
+	)
+
+	//Use this to configure the program easily
+	//:BGIMAGE[inSelectCenterArea] con_179746bf_6035_4bbe_ace0_a4257a0800c1
+	//:COORDINATESYSTEM[inSelectCenterArea] Absolute
+	//:BGIMAGE[inSelectTopArea] con_179746bf_6035_4bbe_ace0_a4257a0800c1
+	//:COORDINATESYSTEM[inSelectTopArea] Absolute
+	//:BGIMAGE[inDotCircleArea] con_179746bf_6035_4bbe_ace0_a4257a0800c1
+	//:COORDINATESYSTEM[inDotCircleArea] Absolute
+	Configuration
+	(
+		inSelectCenterArea:
+			Circle2D
+			(
+				Center:
+					Point2D
+					(
+						X: 1666.237427
+						Y: 651.266296
+					)
+				Radius: 7.622190
+			)
+		inImageWidth: con_4a48c183_07df_432b_9a97_f84dffbffe4b
+		inImageHeight: con_bd0404b1_5c3d_4b4d_8441_1405d80063fa
+		inSelectTopArea:
+			Circle2D
+			(
+				Center:
+					Point2D
+					(
+						X: 1660.786133
+						Y: 644.877869
+					)
+				Radius: 37.816422
+			)
+		inDotCircleArea:
+			Circle2D
+			(
+				Center:
+					Point2D
+					(
+						X: 1686.576904
+						Y: 656.043640
+					)
+				Radius: 2.628158
+			)
+		inMazeWidth: 2400.000000
+		inMazeHeight: 1180.000000
+		outMinimalCenterArea: con_acde6656_8f18_4ab9_a342_553d10d9e3b5
+		outMaximalCenterArea: con_e9d5cee5_7130_4655_a517_73ce1e3e2486
+		outTopAreaRadius: con_107a7d07_2802_4d9a_b263_29b4dffbc469
+		outScaleX: con_61dd1d86_1296_4d20_9d22_a0523211cd72
+		outScaleY: con_307c780e_6363_49e0_9396_be706a281845
+	)
+
+	FindPololus
+	(
+		inImage: con_179746bf_6035_4bbe_ace0_a4257a0800c1
+		inMinCenterArea: con_acde6656_8f18_4ab9_a342_553d10d9e3b5
+		inMaxCenterArea: con_e9d5cee5_7130_4655_a517_73ce1e3e2486
+		inROIRadius: con_107a7d07_2802_4d9a_b263_29b4dffbc469
+		outImage: con_12f59ac2_79e9_43c0_a0ad_b62e341d5843
+		outIds: con_c0dc347c_96d0_4533_aded_270e2e81a864
+		outPositionsX: con_8b72f080_0322_454d_9a71_f412a5b7b793
+		outPositionsY: con_8743b5e5_eaae_4426_8009_f9b2cabcf6c7
+		outDirectionAngleRadians: con_2d6e8b63_ef16_4538_a6f0_e0a17b6ba014
+	)
+
+	PixelsToMillimetres
+	(
+		inPixels: con_8b72f080_0322_454d_9a71_f412a5b7b793
+		inScale: con_61dd1d86_1296_4d20_9d22_a0523211cd72
+		outMillimetres: con_68e544e0_11c3_4464_b98f_e81504609178
+	)
+
+	PixelsToMillimetres
+	(
+		inPixels: con_8743b5e5_eaae_4426_8009_f9b2cabcf6c7
+		inScale: con_307c780e_6363_49e0_9396_be706a281845
+		outMillimetres: con_7385c4f9_0af9_4ab2_a130_aef65f4b6fbd
+	)
+
+	CreatePositionAndDirectionJson
+	(
+		inId: con_c0dc347c_96d0_4533_aded_270e2e81a864
+		inXPosition: con_68e544e0_11c3_4464_b98f_e81504609178
+		inYPosition: con_7385c4f9_0af9_4ab2_a130_aef65f4b6fbd
+		inAngle: con_2d6e8b63_ef16_4538_a6f0_e0a17b6ba014
+		outJsonString: con_b281e5c6_f74a_48ea_bf3f_502dd505daa3
+	)
+
+	CreateJsonArrayOfPololus
+	(
+		inJsonStrings: con_b281e5c6_f74a_48ea_bf3f_502dd505daa3
+		outJsonString: con_265c86fd_251e_4273_bbdf_f20298682ec7
+	)
+
+	//:HIDDENPORT[inTimeout] TRUE
+	//:HIDDENPORT[inSuffix] TRUE
+	TcpIp_WriteText
+	(
+		inSocket: inTcpSocket
+		inTimeout: Nil
+		inText: con_265c86fd_251e_4273_bbdf_f20298682ec7
+		inSuffix: "\\r\\n"
+		outDisconnected: Nil
+	)
+
+	outImage = con_12f59ac2_79e9_43c0_a0ad_b62e341d5843
 }
 
