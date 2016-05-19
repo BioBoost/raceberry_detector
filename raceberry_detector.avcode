@@ -44,6 +44,7 @@ public FindMaze(Image inGreyImage, Image inSaturatedImage, Image? outRotatedCrop
 	)
 
 	//:HIDDENPORT[inInterpolationMethod] TRUE
+	//:HIDDENPORT[outOutputAlignment] TRUE
 	CropImageToRectangle
 	(
 		inImage: inSaturatedImage
@@ -53,6 +54,7 @@ public FindMaze(Image inGreyImage, Image inSaturatedImage, Image? outRotatedCrop
 		inMargin: 0.000000
 		outImage: con_18d6a6e9_f2c3_4da3_8d8c_158a467ba01b
 		outAlignedRectangle: Nil
+		outOutputAlignment: Nil
 	)
 
 	outRotatedCroppedImage = con_18d6a6e9_f2c3_4da3_8d8c_158a467ba01b
@@ -142,7 +144,8 @@ public FindPololus(Image inImage, Integer<0, INF> inMinCenterArea, Integer<0, IN
 		outImage: con_04c755e3_89d3_4df5_999a_8a75c6a47e57
 	)
 
-	//:HIDDENPORT[inLocationsAnchor] TRUE
+	//:HIDDENPORT[inLocationAlignment] TRUE
+	//:HIDDENPORT[inLocationAnchor] TRUE
 	//:HIDDENPORT[inColors] TRUE
 	//:HIDDENPORT[inDrawingStyle] TRUE
 	//:HIDDENPORT[inSize] TRUE
@@ -153,8 +156,8 @@ public FindPololus(Image inImage, Integer<0, INF> inMinCenterArea, Integer<0, IN
 		inImage: con_04c755e3_89d3_4df5_999a_8a75c6a47e57
 		inStrings: con_a8a17058_c4c0_42ec_9586_ba8e2fa1dc58
 		inLocations: con_f09e5726_dde0_429e_bb1e_3407c961562a
-		inLocationsAlignment: Nil
-		inLocationsAnchor: MiddleCenter
+		inLocationAlignment: Nil
+		inLocationAnchor: MiddleCenter
 		inColors:
 			PixelArray
 			{
@@ -324,8 +327,8 @@ public DetermineDirectionAndID(Point2D inPoint, Image inImage, Real<0, INF> inRO
 	(
 		inCircle: con_e62ad94c_fc3e_4638_9573_8b185477fdb5
 		inCircleAlignment: Nil
-		inRegionWidth: inImage.Width
-		inRegionHeight: inImage.Height
+		inFrameWidth: inImage.Width
+		inFrameHeight: inImage.Height
 		outRegion: con_fa24c8b0_2167_4e5f_a4b1_279dd87589e1
 		outAlignedCircle: Nil
 	)
@@ -388,17 +391,17 @@ public DetermineDirectionAndID(Point2D inPoint, Image inImage, Real<0, INF> inRO
 	)
 
 	//:HIDDENPORT[inFeature] TRUE
-	ChooseMaximumRegion
+	GetMaximumRegion
 	(
 		inRegions: con_18f1d0c0_0fad_454f_9731_477252dbde89
 		inFeature: Area
-		outRegion: con_9f890cc1_707d_435c_b95a_d9f797df5e43
+		outRegion: con_c5d888f8_579f_4d8c_9196_e9c41ff6d194
 		outValue: Nil
 	)
 
 	RegionMassCenter
 	(
-		inRegion: con_9f890cc1_707d_435c_b95a_d9f797df5e43
+		inRegion: con_c5d888f8_579f_4d8c_9196_e9c41ff6d194
 		outMassCenter: con_d5bcc145_40af_45bc_ab37_59bf4f7fd32d
 	)
 
@@ -628,8 +631,8 @@ public Configuration(Circle2D inSelectCenterArea, Integer<0, INF> inImageWidth, 
 				Radius: 9.738429
 			)
 		inCircleAlignment: Nil
-		inRegionWidth: inImageWidth
-		inRegionHeight: inImageHeight
+		inFrameWidth: inImageWidth
+		inFrameHeight: inImageHeight
 		outRegion: Nil
 		outAlignedCircle: Nil
 	)
@@ -879,10 +882,12 @@ public FindMazeRectangle(Image inImage, Rectangle2D? outBoundingRectangle) step
 		outDirectedAngle: con_f6b21bf1_c45c_425d_826f_50e80a6730ed
 	)
 
+	//:HIDDENPORT[inBoundingRectangleFeature] TRUE
 	PointsBoundingRectangle
 	(
 		inPoints: con_89397690_c2de_4361_ada6_c288dde67db6
 		inRectangleOrientation: con_f6b21bf1_c45c_425d_826f_50e80a6730ed
+		inBoundingRectangleFeature: MinimalArea
 		outBoundingRectangle: con_687e4d4a_9afe_4e34_af50_d60f765ebcd5
 		outCenter: Nil
 		outLongSide: Nil
@@ -1046,7 +1051,7 @@ public DetectorLoop(SocketId? inTcpSocket, Image? outImage)
 		outDisconnected: Nil
 	)
 
-	disabled Tests
+	Tests
 	(
 		inExpectedRobotIds:
 			{
@@ -1060,8 +1065,8 @@ public DetectorLoop(SocketId? inTcpSocket, Image? outImage)
 			}
 		inActualRobotsIds: con_c0dc347c_96d0_4533_aded_270e2e81a864
 		inRotatedCroppedImage: con_179746bf_6035_4bbe_ace0_a4257a0800c1
-		outRobotsIdsPassed: Nil
-		outMazeFound: Nil
+		outRobotsIdsPassed: con_37d25514_1ec9_47ee_92e1_76b702572c06
+		outMazeFound: con_0f71d519_7e66_4e78_93b1_f4a9afeb67b6
 	)
 
 	outImage = con_12f59ac2_79e9_43c0_a0ad_b62e341d5843
