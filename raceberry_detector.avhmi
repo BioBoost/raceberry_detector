@@ -1,0 +1,38 @@
+﻿<HMI>
+  <ClientSize>756, 486</ClientSize>
+  <Controls>
+    <ZoomingVideoBox>
+      <InitialSizeMode>FitToWindow</InitialSizeMode>
+      <Location>3, 3</Location>
+      <Name>zoomingVideoBox1</Name>
+      <Size>750, 325</Size>
+      <TabIndex>0</TabIndex>
+      <Binding>
+        <Input Property="Image" Macro="DetectorLoop" Variable="con_12f59ac2_79e9_43c0_a0ad_b62e341d5843" VariantIndex="0" />
+      </Binding>
+    </ZoomingVideoBox>
+    <BoolIndicatorBoard>
+      <Location>3, 334</Location>
+      <Name>boolIndicatorBoard1</Name>
+      <Size>189, 141</Size>
+      <TabIndex>1</TabIndex>
+      <Variables>
+        <ListContent>
+          <Item type="System.String">Robot 1</Item>
+          <Item type="System.String">Robot 2</Item>
+          <Item type="System.String">Robot 3</Item>
+          <Item type="System.String">Robot 4</Item>
+          <Item type="System.String">Robot 5</Item>
+          <Item type="System.String">Robot 6</Item>
+          <Item type="System.String">Robot 7</Item>
+          <Item type="System.String">Robot 8</Item>
+          <Item type="System.String">Robot 9</Item>
+          <Item type="System.String">Robot 10</Item>
+        </ListContent>
+      </Variables>
+      <Binding>
+        <Input Property="Values" Macro="DisplayDetectedIds" Variable="con_a61cdcb0_d487_41a4_8b4c_e7d5a01d7b3b" VariantIndex="0" />
+      </Binding>
+    </BoolIndicatorBoard>
+  </Controls>
+</HMI>

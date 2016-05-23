@@ -1,11 +1,19 @@
-﻿<ViewSets Current="Custom3">
+﻿<ViewSets Current="HMI">
   <ViewSet Name="Custom1">
     <HSplit>
-      <Views Width="0.998" Height="0.496">
-        <View />
+      <Views Width="0.998" Height="0.998">
+        <View Type="TextView">
+          <Output Name="inRobotIds" Macro="DisplayDetectedIds" Start="Main" Instance="0" />
+          <Output Name="con_18782348_8c38_48c9_ba19_36523c6ecb0c" Macro="DisplayDetectedIds" Start="Main" Instance="0" />
+          <Output Name="con_487111a3_a1f1_4d1e_8032_8526af81dde8" Macro="DisplayDetectedIds" Start="Main" Instance="0" />
+        </View>
       </Views>
-      <Views Width="0.998" Height="0.496">
-        <View />
+    </HSplit>
+  </ViewSet>
+  <ViewSet Name="HMI">
+    <HSplit>
+      <Views Width="0.998" Height="0.998">
+        <HmiView />
       </Views>
     </HSplit>
   </ViewSet>
@@ -27,29 +35,12 @@
   </ViewSet>
   <ViewSet Name="Custom3">
     <HSplit>
+      <Views Width="0.998" Height="0.864">
+        <HmiView />
+      </Views>
       <VSplit>
-        <Views Width="0.998" Height="0.672">
-          <View Type="ImageView">
-            <Output Name="con_12f59ac2_79e9_43c0_a0ad_b62e341d5843" Macro="DetectorLoop" Start="Main" Instance="0" />
-            <ViewState>
-              <ViewMode Mode="Manual" Scale="0.333333333333333" X="-29" Y="51" />
-            </ViewState>
-          </View>
-        </Views>
-      </VSplit>
-      <VSplit>
-        <Views Width="0.998" Height="0.320">
-          <View Type="TextView">
-            <Input Name="outRobotsIdsPassed" Index="3" Macro="Tests" Start="Main" Instance="0" />
-            <Input Name="outMazeFound" Index="3" Macro="Tests" Start="Main" Instance="0" />
-            <Output Name="con_37d25514_1ec9_47ee_92e1_76b702572c06" Macro="DetectorLoop" Start="Main" Instance="0" />
-            <Output Name="con_0f71d519_7e66_4e78_93b1_f4a9afeb67b6" Macro="DetectorLoop" Start="Main" Instance="0" />
-            <Input Name="outJsonString" Index="4" Macro="CreatePositionAndDirectionJson" Start="Main" Instance="0" />
-            <Input Name="outJsonString" Index="7" Macro="CreateJsonArrayOfPololus" Start="Main" Instance="0" />
-            <Input Name="inArray1" Index="0" Macro="Tests" Start="Main" Instance="0" />
-            <Input Name="inArray2" Index="0" Macro="Tests" Start="Main" Instance="0" />
-            <Output Name="con_4263c884_81f5_414a_abb0_2e4e5a5c117b" Macro="Tests" Start="Main" Instance="0" />
-          </View>
+        <Views Width="0.998" Height="0.128">
+          <View />
         </Views>
       </VSplit>
     </HSplit>

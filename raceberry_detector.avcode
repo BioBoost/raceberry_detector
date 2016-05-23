@@ -942,8 +942,8 @@ public DetectorLoop(SocketId? inTcpSocket, Image? outImage)
 				Width: 2444
 				Height: 1328
 			)
-		inLowSaturate: 170.000000
-		inHighSaturate: 170.000000
+		inLowSaturate: 180.000000
+		inHighSaturate: 180.000000
 		outSaturatedImage: con_2e5fd2d0_7f1f_4e67_b59d_0040f08c07f0
 		outGreyImage: con_6c3e02d0_9e2a_4d5b_a486_7001316676d2
 	)
@@ -958,12 +958,6 @@ public DetectorLoop(SocketId? inTcpSocket, Image? outImage)
 	)
 
 	//Use this to configure the program easily
-	//:BGIMAGE[inSelectCenterArea] con_179746bf_6035_4bbe_ace0_a4257a0800c1
-	//:COORDINATESYSTEM[inSelectCenterArea] Absolute
-	//:BGIMAGE[inSelectTopArea] con_179746bf_6035_4bbe_ace0_a4257a0800c1
-	//:COORDINATESYSTEM[inSelectTopArea] Absolute
-	//:BGIMAGE[inDotCircleArea] con_179746bf_6035_4bbe_ace0_a4257a0800c1
-	//:COORDINATESYSTEM[inDotCircleArea] Absolute
 	Configuration
 	(
 		inSelectCenterArea:
@@ -1023,6 +1017,11 @@ public DetectorLoop(SocketId? inTcpSocket, Image? outImage)
 		outDirectionAngleRadians: con_2d6e8b63_ef16_4538_a6f0_e0a17b6ba014
 	)
 
+	DisplayDetectedIds
+	(
+		inRobotIds: con_c0dc347c_96d0_4533_aded_270e2e81a864
+	)
+
 	PixelsToMillimetres
 	(
 		inPixels: con_8b72f080_0322_454d_9a71_f412a5b7b793
@@ -1077,8 +1076,8 @@ public DetectorLoop(SocketId? inTcpSocket, Image? outImage)
 			}
 		inActualRobotsIds: con_c0dc347c_96d0_4533_aded_270e2e81a864
 		inRotatedCroppedImage: con_179746bf_6035_4bbe_ace0_a4257a0800c1
-		outRobotsIdsPassed: con_37d25514_1ec9_47ee_92e1_76b702572c06
-		outMazeFound: con_0f71d519_7e66_4e78_93b1_f4a9afeb67b6
+		outRobotsIdsPassed: Nil
+		outMazeFound: Nil
 	)
 
 	outImage = con_12f59ac2_79e9_43c0_a0ad_b62e341d5843
@@ -1090,7 +1089,7 @@ public Tests(IntegerArray inExpectedRobotIds, IntegerArray inActualRobotsIds, Im
 	(
 		inArray1: inExpectedRobotIds
 		inArray2: inActualRobotsIds
-		outArray: con_4263c884_81f5_414a_abb0_2e4e5a5c117b
+		outArray: Nil
 		outArray.Count: con_f699b439_9447_435a_8291_165cd2e55dd2
 	)
 
@@ -1111,5 +1110,80 @@ public Tests(IntegerArray inExpectedRobotIds, IntegerArray inActualRobotsIds, Im
 	outRobotsIdsPassed = con_5a675cf2_7de9_4839_b5e2_1823f7875dd6
 
 	outMazeFound = con_01c9a6af_4329_45ae_bcbd_a08ecbbc9855
+}
+
+public DisplayDetectedIds(IntegerArray? inRobotIds) step
+{
+	//:HIDDENPORT[inMinimum] TRUE
+	//:HIDDENPORT[inMaximum] TRUE
+	//:HIDDENPORT[outLower] TRUE
+	//:HIDDENPORT[outHigher] TRUE
+	//:HIDDENPORT[outIsAccepted] TRUE
+	//:HIDDENPORT[outIsRejected] TRUE
+	ClassifyByRange<Integer>
+	(
+		inArray: inRobotIds
+		inValues: inRobotIds
+		inMinimum: 1.000000
+		inMaximum: 10.000000
+		outAccepted: con_18782348_8c38_48c9_ba19_36523c6ecb0c
+		outRejected: Nil
+		outLower: Nil
+		outHigher: Nil
+		outIsAccepted: Nil
+		outIsRejected: Nil
+		outAccepted.Count: con_ced05af1_05d6_4d95_8bf5_19399705d704
+	)
+
+	//:HIDDENPORT[inMinimum] TRUE
+	//:HIDDENPORT[inMaximum] TRUE
+	TestIntegerInRange
+	(
+		inValue: con_ced05af1_05d6_4d95_8bf5_19399705d704
+		inMinimum: Nil
+		inMaximum: 10
+		outIsInRange: con_487111a3_a1f1_4d1e_8032_8526af81dde8
+	)
+
+	MakeConditional<IntegerArray>
+	(
+		inObject: con_18782348_8c38_48c9_ba19_36523c6ecb0c
+		inCondition: con_487111a3_a1f1_4d1e_8032_8526af81dde8
+		outConditionalObject: con_bc7a4dcf_69ca_4806_82f1_c79916b4a5ff
+	)
+
+	CreateUniformArray<Bool>
+	(
+		inSize: 10
+		inValue: False
+		outArray: con_43b88fde_aee8_4cd9_ba3f_ed39872369ff
+	)
+
+	expression
+	{
+		Integer inRobotId
+		Integer outIndex = "inRobotId-1"
+	}
+	(
+		inRobotId: con_bc7a4dcf_69ca_4806_82f1_c79916b4a5ff
+		outIndex: con_08484fe8_c377_46cb_9605_9e1cd6ed6b28
+	)
+
+	TestIntegerEqualTo
+	(
+		inValue: con_bc7a4dcf_69ca_4806_82f1_c79916b4a5ff
+		inReferenceValue: con_bc7a4dcf_69ca_4806_82f1_c79916b4a5ff
+		outIsEqual: con_fbd6e4a9_94cc_4af3_936c_8688e6a813ec
+	)
+
+	//:HIDDENPORT[inInverse] TRUE
+	SetMultipleArrayElements<Bool>
+	(
+		inArray: con_43b88fde_aee8_4cd9_ba3f_ed39872369ff
+		inIndices: con_08484fe8_c377_46cb_9605_9e1cd6ed6b28
+		inInverse: False
+		inNewValues: con_fbd6e4a9_94cc_4af3_936c_8688e6a813ec
+		outArray: con_a61cdcb0_d487_41a4_8b4c_e7d5a01d7b3b
+	)
 }
 

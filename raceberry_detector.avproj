@@ -2,5 +2,6 @@
   <Files>
     <Program Path="raceberry_detector.avcode" />
     <View Path="raceberry_detector.avview" />
+    <HMI Path="raceberry_detector.avhmi" />
   </Files>
 </AdaptiveVisionProject>
