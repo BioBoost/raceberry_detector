@@ -32,7 +32,7 @@
           <View Type="ImageView">
             <Output Name="con_12f59ac2_79e9_43c0_a0ad_b62e341d5843" Macro="DetectorLoop" Start="Main" Instance="0" />
             <ViewState>
-              <ViewMode Mode="Manual" Scale="0.4" X="-289" Y="11" />
+              <ViewMode Mode="Manual" Scale="0.333333333333333" X="-29" Y="51" />
             </ViewState>
           </View>
         </Views>
@@ -44,6 +44,8 @@
             <Input Name="outMazeFound" Index="3" Macro="Tests" Start="Main" Instance="0" />
             <Output Name="con_37d25514_1ec9_47ee_92e1_76b702572c06" Macro="DetectorLoop" Start="Main" Instance="0" />
             <Output Name="con_0f71d519_7e66_4e78_93b1_f4a9afeb67b6" Macro="DetectorLoop" Start="Main" Instance="0" />
+            <Input Name="outJsonString" Index="4" Macro="CreatePositionAndDirectionJson" Start="Main" Instance="0" />
+            <Input Name="outJsonString" Index="7" Macro="CreateJsonArrayOfPololus" Start="Main" Instance="0" />
             <Input Name="inArray1" Index="0" Macro="Tests" Start="Main" Instance="0" />
             <Input Name="inArray2" Index="0" Macro="Tests" Start="Main" Instance="0" />
             <Output Name="con_4263c884_81f5_414a_abb0_2e4e5a5c117b" Macro="Tests" Start="Main" Instance="0" />

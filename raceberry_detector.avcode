@@ -456,6 +456,18 @@ public DetermineDirectionAndID(Point2D inPoint, Image inImage, Real<0, INF> inRO
 
 public CreatePositionAndDirectionJson(Integer inId, Real inXPosition, Real inYPosition, Real inAngle, String outJsonString) step
 {
+	Round
+	(
+		inValue: inXPosition
+		outRound: con_88a6c88f_1b2f_4b62_9863_3a2609dd6568
+	)
+
+	Round
+	(
+		inValue: inYPosition
+		outRound: con_6335d8fb_4c9d_4f2d_be9e_e40424c766ee
+	)
+
 	//:HIDDENPORT[inValue5] TRUE
 	//:HIDDENPORT[inValue6] TRUE
 	//:HIDDENPORT[inValue7] TRUE
@@ -463,8 +475,8 @@ public CreatePositionAndDirectionJson(Integer inId, Real inXPosition, Real inYPo
 	CreateShortArray<String>
 	(
 		inValue1: inId
-		inValue2: inXPosition
-		inValue3: inYPosition
+		inValue2: con_88a6c88f_1b2f_4b62_9863_3a2609dd6568
+		inValue3: con_6335d8fb_4c9d_4f2d_be9e_e40424c766ee
 		inValue4: inAngle
 		inValue5: Nil
 		inValue6: Nil
@@ -476,7 +488,7 @@ public CreatePositionAndDirectionJson(Integer inId, Real inXPosition, Real inYPo
 	//:HIDDENPORT[inFormat] TRUE
 	FormatString
 	(
-		inFormat: "\"robot%0%\": {\"x\": %1%, \"y\": %2%, \"angle\": %3% },"
+		inFormat: "{\"id\": \"robot%0%\", \"state\": {\"x\": %1%, \"y\": %2%, \"angle\": %3% }},"
 		inData: con_a0c5196c_f821_4ded_8266_3f022380cb6e
 		outFormattedString: con_9a792813_edbe_4947_af39_902987ba1e48
 	)
@@ -531,9 +543,9 @@ public CreateJsonArrayOfPololus(String?Array inJsonStrings, String outJsonString
 	//:HIDDENPORT[inString8] TRUE
 	ConcatenateStrings
 	(
-		inString1: "{"
+		inString1: "["
 		inString2: con_1e5554f4_d77b_4b4e_b716_f8386fd1abba
-		inString3: "}"
+		inString3: "]"
 		inString4: ""
 		inString5: ""
 		inString6: ""
@@ -545,7 +557,7 @@ public CreateJsonArrayOfPololus(String?Array inJsonStrings, String outJsonString
 	MergeWithDefault<String>
 	(
 		inConditionalObject: con_6f64de0d_5392_4be8_9938_f83bed135ece
-		inDefaultObject: "{}"
+		inDefaultObject: "[]"
 		outObject: con_b4383cb0_8101_404b_89a2_858e6bd1bd7b
 	)
 
