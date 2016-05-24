@@ -13,8 +13,8 @@ public Main()
 	//:HIDDENPORT[inTimeout] TRUE
 	TcpIp_Connect
 	(
-		inHost: "10.182.34.184"
-		inPort: 1337
+		inHost: "10.182.34.172"
+		inPort: 9957
 		inTimeout: 1000
 		outSocket: con_4fe407ca_9949_4608_b55c_ababa3b8f13d
 	)
@@ -583,7 +583,7 @@ public PreprocessImage(Image inImage, Box inMazeROI, Real inLowSaturate = 116.00
 	UndistortImage_DivisionModel
 	(
 		inImage: con_087c85c9_eb3d_471e_a9fb_d33b6fedbe81
-		inKappa: 6.000000
+		inKappa: 4.000000
 		inCenter: Nil
 		inImageInterpolation: NearestNeighbour
 		outImage: con_df57dc1a_b07c_4c36_8380_9501b0ad5f4c
@@ -937,9 +937,9 @@ public DetectorLoop(SocketId? inTcpSocket, Image? outImage)
 		inMazeROI:
 			Box
 			(
-				X: -4
-				Y: 434
-				Width: 2444
+				X: 88
+				Y: 186
+				Width: 2344
 				Height: 1328
 			)
 		inLowSaturate: 180.000000

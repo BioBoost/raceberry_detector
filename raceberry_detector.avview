@@ -2,12 +2,25 @@
   <ViewSet Name="Custom1">
     <HSplit>
       <Views Width="0.998" Height="0.998">
-        <View Type="TextView">
-          <Output Name="inRobotIds" Macro="DisplayDetectedIds" Start="Main" Instance="0" />
-          <Output Name="con_18782348_8c38_48c9_ba19_36523c6ecb0c" Macro="DisplayDetectedIds" Start="Main" Instance="0" />
-          <Output Name="con_487111a3_a1f1_4d1e_8032_8526af81dde8" Macro="DisplayDetectedIds" Start="Main" Instance="0" />
+        <View Type="ImageView">
+          <Output Name="con_12f59ac2_79e9_43c0_a0ad_b62e341d5843" Macro="DetectorLoop" Start="Main" Instance="0" />
         </View>
       </Views>
+    </HSplit>
+  </ViewSet>
+  <ViewSet Name="Auto">
+    <HSplit>
+      <Views Width="0.998" Height="0.594">
+        <AutoView Level="0" />
+      </Views>
+      <VSplit>
+        <Views Width="0.496" Height="0.398">
+          <AutoView Level="1" />
+        </Views>
+        <Views Width="0.496" Height="0.398">
+          <AutoView Level="2" />
+        </Views>
+      </VSplit>
     </HSplit>
   </ViewSet>
   <ViewSet Name="HMI">
