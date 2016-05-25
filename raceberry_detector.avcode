@@ -13,7 +13,7 @@ public Main()
 	//:HIDDENPORT[inTimeout] TRUE
 	TcpIp_Connect
 	(
-		inHost: "10.182.34.172"
+		inHost: "10.182.34.173"
 		inPort: 9957
 		inTimeout: 1000
 		outSocket: con_4fe407ca_9949_4608_b55c_ababa3b8f13d
@@ -87,6 +87,13 @@ public FindPololus(Image inImage, Integer<0, INF> inMinCenterArea, Integer<0, IN
 		outCenter.Y: con_4c6eda57_43fb_4262_842f_8e8e1b1804a7
 	)
 
+	ResizeVector
+	(
+		inVector: con_dfcb70b8_3be4_43f9_a1c3_4dc64a582e5d
+		inNewLength: 120.000000
+		outVector: con_573e74aa_ccfc_405a_94f5_2ca68ab6b87a
+	)
+
 	//:HIDDENPORT[inColors] TRUE
 	//:HIDDENPORT[inDrawingStyle] TRUE
 	//:HIDDENPORT[inHeadSize] TRUE
@@ -94,7 +101,7 @@ public FindPololus(Image inImage, Integer<0, INF> inMinCenterArea, Integer<0, IN
 	DrawVectors_Palette
 	(
 		inImage: inImage
-		inVectors: con_dfcb70b8_3be4_43f9_a1c3_4dc64a582e5d
+		inVectors: con_573e74aa_ccfc_405a_94f5_2ca68ab6b87a
 		inInitialPoints: con_f09e5726_dde0_429e_bb1e_3407c961562a
 		inVectorAlignment: Nil
 		inColors:
@@ -134,12 +141,12 @@ public FindPololus(Image inImage, Integer<0, INF> inMinCenterArea, Integer<0, IN
 			(
 				DrawingMode: HighQuality
 				Opacity: 1.000000
-				Thickness: 5.000000
+				Thickness: 20.000000
 				Filled: True
 				PointShape: Nil
 				PointSize: 1.000000
 			)
-		inHeadSize: 12.000000
+		inHeadSize: 35.000000
 		inForceRgb: True
 		outImage: con_04c755e3_89d3_4df5_999a_8a75c6a47e57
 	)
@@ -200,7 +207,7 @@ public FindPololus(Image inImage, Integer<0, INF> inMinCenterArea, Integer<0, IN
 				PointShape: Nil
 				PointSize: 1.000000
 			)
-		inSize: 24.000000
+		inSize: 82.000000
 		inOrientationAngle: 0.000000
 		inForceRgb: True
 		inBackgroundColor: Pixel()
@@ -415,12 +422,19 @@ public DetermineDirectionAndID(Point2D inPoint, Image inImage, Real<0, INF> inRO
 	VectorDirection
 	(
 		inVector: con_684a5c8b_c340_4a85_b43a_6dfe22171d0d
-		outDirection: con_257c7747_c6e8_4cdb_b6af_618bf074a85f
+		outDirection: con_efa86fb3_510e_4b0c_961c_fe973ff56642
+	)
+
+	SubtractIntegers
+	(
+		inA: 360
+		inB: con_efa86fb3_510e_4b0c_961c_fe973ff56642
+		outDifference: con_57e779dc_5087_4ccc_955f_201322f06bdb
 	)
 
 	DegreesToRadians
 	(
-		inDegrees: con_257c7747_c6e8_4cdb_b6af_618bf074a85f
+		inDegrees: con_57e779dc_5087_4ccc_955f_201322f06bdb
 		outRadians: con_bdfd2fa9_bd5a_4b7d_b24f_c8b00105e168
 	)
 
@@ -451,7 +465,7 @@ public DetermineDirectionAndID(Point2D inPoint, Image inImage, Real<0, INF> inRO
 
 	outDotCount = con_12665de3_5901_4e4f_b784_078b43d92fe8
 
-	outDirectionAngleDegrees = con_257c7747_c6e8_4cdb_b6af_618bf074a85f
+	outDirectionAngleDegrees = con_57e779dc_5087_4ccc_955f_201322f06bdb
 }
 
 public CreatePositionAndDirectionJson(Integer inId, Real inXPosition, Real inYPosition, Real inAngle, String outJsonString) step
@@ -583,7 +597,7 @@ public PreprocessImage(Image inImage, Box inMazeROI, Real inLowSaturate = 116.00
 	UndistortImage_DivisionModel
 	(
 		inImage: con_087c85c9_eb3d_471e_a9fb_d33b6fedbe81
-		inKappa: 4.000000
+		inKappa: 6.000000
 		inCenter: Nil
 		inImageInterpolation: NearestNeighbour
 		outImage: con_df57dc1a_b07c_4c36_8380_9501b0ad5f4c
@@ -930,20 +944,33 @@ public DetectorLoop(SocketId? inTcpSocket, Image? outImage)
 		outTimestamp: Nil
 	)
 
+	//:HIDDENPORT[inSizeMode] TRUE
+	//:HIDDENPORT[inInterpolationMethod] TRUE
+	//:HIDDENPORT[inInverse] TRUE
+	RotateImage
+	(
+		inImage: con_3f9e9967_4ab7_4159_a595_443b1829b7c1
+		inAngle: 180.000000
+		inSizeMode: Fit
+		inInterpolationMethod: Bilinear
+		inInverse: False
+		outImage: con_d6408a83_9bf7_472f_b524_80e789cccd89
+	)
+
 	//:BGIMAGE[inMazeROI] @input:inImage
 	PreprocessImage
 	(
-		inImage: con_3f9e9967_4ab7_4159_a595_443b1829b7c1
+		inImage: con_d6408a83_9bf7_472f_b524_80e789cccd89
 		inMazeROI:
 			Box
 			(
-				X: 88
-				Y: 186
-				Width: 2344
-				Height: 1328
+				X: 4
+				Y: 570
+				Width: 2416
+				Height: 1368
 			)
-		inLowSaturate: 180.000000
-		inHighSaturate: 180.000000
+		inLowSaturate: 200.000000
+		inHighSaturate: 200.000000
 		outSaturatedImage: con_2e5fd2d0_7f1f_4e67_b59d_0040f08c07f0
 		outGreyImage: con_6c3e02d0_9e2a_4d5b_a486_7001316676d2
 	)
@@ -958,6 +985,12 @@ public DetectorLoop(SocketId? inTcpSocket, Image? outImage)
 	)
 
 	//Use this to configure the program easily
+	//:BGIMAGE[inSelectCenterArea] con_179746bf_6035_4bbe_ace0_a4257a0800c1
+	//:COORDINATESYSTEM[inSelectCenterArea] Absolute
+	//:BGIMAGE[inSelectTopArea] con_179746bf_6035_4bbe_ace0_a4257a0800c1
+	//:COORDINATESYSTEM[inSelectTopArea] Absolute
+	//:BGIMAGE[inDotCircleArea] con_179746bf_6035_4bbe_ace0_a4257a0800c1
+	//:COORDINATESYSTEM[inDotCircleArea] Absolute
 	Configuration
 	(
 		inSelectCenterArea:
@@ -966,10 +999,10 @@ public DetectorLoop(SocketId? inTcpSocket, Image? outImage)
 				Center:
 					Point2D
 					(
-						X: 1666.237427
-						Y: 651.266296
+						X: 1535.822388
+						Y: 954.889954
 					)
-				Radius: 7.622190
+				Radius: 9.588375
 			)
 		inImageWidth: con_4a48c183_07df_432b_9a97_f84dffbffe4b
 		inImageHeight: con_bd0404b1_5c3d_4b4d_8441_1405d80063fa
@@ -979,10 +1012,10 @@ public DetectorLoop(SocketId? inTcpSocket, Image? outImage)
 				Center:
 					Point2D
 					(
-						X: 1660.786133
-						Y: 644.877869
+						X: 1536.201538
+						Y: 954.242859
 					)
-				Radius: 37.816422
+				Radius: 49.157707
 			)
 		inDotCircleArea:
 			Circle2D
@@ -990,10 +1023,10 @@ public DetectorLoop(SocketId? inTcpSocket, Image? outImage)
 				Center:
 					Point2D
 					(
-						X: 1686.576904
-						Y: 656.043640
+						X: 1560.755493
+						Y: 932.948547
 					)
-				Radius: 2.628158
+				Radius: 3.214782
 			)
 		inMazeWidth: 2400.000000
 		inMazeHeight: 1180.000000

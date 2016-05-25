@@ -1,10 +1,8 @@
-﻿<ViewSets Current="HMI">
+﻿<ViewSets Current="Custom1">
   <ViewSet Name="Custom1">
     <HSplit>
       <Views Width="0.998" Height="0.998">
-        <View Type="ImageView">
-          <Output Name="con_12f59ac2_79e9_43c0_a0ad_b62e341d5843" Macro="DetectorLoop" Start="Main" Instance="0" />
-        </View>
+        <View />
       </Views>
     </HSplit>
   </ViewSet>
@@ -32,18 +30,11 @@
   </ViewSet>
   <ViewSet Name="Custom2">
     <HSplit>
-      <VSplit>
-        <Views Width="0.998" Height="0.496">
-          <View Type="ImageView">
-            <Output Name="inGreyImage" Macro="FindMaze" Start="Main" Instance="0" />
-          </View>
-        </Views>
-      </VSplit>
-      <VSplit>
-        <Views Width="0.998" Height="0.496">
-          <View />
-        </Views>
-      </VSplit>
+      <Views Width="0.998" Height="0.998">
+        <View Type="ImageView">
+          <Output Name="con_c9e41a62_23e1_4923_8be1_e3fc0f0025f2" Macro="FindPololus" Start="Main" Instance="0" />
+        </View>
+      </Views>
     </HSplit>
   </ViewSet>
   <ViewSet Name="Custom3">
